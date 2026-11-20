@@ -13,3 +13,4 @@ Bilingual (English / Arabic) personal engineering portfolio, published with GitH
 - **New gallery photo:** add `img/full/NN.jpg` (original) and `img/thumb/NN.jpg` (≤720px), then add `[NN,"category","English caption","التعليق العربي"]` to `P`.
 - **Portrait:** add `img/portrait.jpg` and set `CONFIG.photo`.
 - **CV:** replace `cv.pdf`.
+- After changing `assets/app.js` or `assets/site.css`, bump the `?v=` number in the three HTML files so visitors get the new version immediately.
