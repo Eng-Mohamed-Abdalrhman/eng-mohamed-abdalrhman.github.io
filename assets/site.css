@@ -230,3 +230,16 @@ details{margin-top:12px;font-size:15px}summary{cursor:pointer;font-weight:600}
 @media(max-width:600px){.pgrid,.ogrid{grid-template-columns:1fr}.kv li{flex-direction:column;gap:0}}
 
 @media(max-width:860px){.brand{flex:1 1 0;min-width:0}.brand>span:last-child{min-width:0}.brand b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.langbtn{flex:none}}
+
+.cattabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.cattabs a{text-decoration:none;font-size:14.5px;font-weight:500;padding:9px 16px;border-radius:999px;border:1px solid var(--line);background:var(--bg)}
+.cattabs small{color:var(--mute);margin-inline-start:4px}
+.ocat{margin-top:52px;scroll-margin-top:130px}
+.ocath{display:flex;gap:16px;align-items:flex-start;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.ocath .ltr{display:grid;place-items:center;flex:none;width:40px;height:40px;border-radius:10px;background:var(--petrol);color:#fff;font:600 16px "IBM Plex Serif",serif}
+.ocath h3{font-size:22px}.ocath h3 small{font-size:14px;color:var(--mute);font-weight:500;margin-inline-start:10px}
+.ocath p{margin:4px 0 0;color:var(--mute);font-size:15px;max-width:70ch}
+.oname-tile b.long{font-size:clamp(16px,1.5vw,19px);letter-spacing:0;line-height:1.3;max-width:24ch;display:block;margin:0 auto}
+html[lang=ar] .oname-tile b.long{font-family:"IBM Plex Sans Arabic",sans-serif}
+.emp{display:flex;flex-direction:column;gap:2px;font-size:14.5px}.emp b{font-weight:600}.emp span{color:var(--mute)}
+.ocat .ologo{height:150px}

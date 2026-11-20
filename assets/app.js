@@ -22,8 +22,18 @@ const PROJECTS=[];
 /* Organizations associated with projects. role: "owner" | "contractor" | "related".
    logo: path in assets/logos/ — only official files used with permission; empty = neutral name tile. */
 const ORGS=[
- {id:"aramco",name:{en:"Saudi Aramco",ar:"أرامكو السعودية"},short:"",site:"https://www.aramco.com",logo:"",role:"related"},
- {id:"rtcc",name:{en:"Al-Rashid Trading & Contracting Co.",ar:"شركة الراشد للتجارة والمقاولات"},short:"RTCC",site:"https://www.rtcc.com.sa/",logo:"",role:"related"}];
+ /* cat: "project" = organizations of projects Mohamed worked on (owner / supervising / other)
+         "employer" = organizations that actually employed him (from CV)
+         "partner"  = main contractors, execution partners and related organizations of his projects */
+ {id:"alrabh",cat:"employer",current:1,name:{en:"Mostafa Mohammed Al-Rabh General Contracting Est.",ar:"Mostafa Mohammed Al-Rabh General Contracting Est."},title:{en:"Civil Engineer",ar:"مهندس مدني"},period:{en:"Feb 2022 – Present",ar:"فبراير 2022 – حتى الآن"},place:{en:"Saudi Arabia",ar:"المملكة العربية السعودية"},logo:""},
+ {id:"blanco",cat:"employer",name:{en:"Blanco Group",ar:"Blanco Group"},title:{en:"Engineering Administration Manager",ar:"مدير الإدارة الهندسية"},period:{en:"2020 – Oct 2022",ar:"2020 – أكتوبر 2022"},place:{en:"",ar:""},logo:""},
+ {id:"moi",cat:"employer",name:{en:"Ministry of Infrastructure and Urban Development",ar:"وزارة البنى التحتية والتنمية العمرانية"},title:{en:"Civil Engineer",ar:"مهندس مدني"},period:{en:"Sep 2020 – Dec 2020",ar:"سبتمبر 2020 – ديسمبر 2020"},place:{en:"Gedaref State, Sudan",ar:"ولاية القضارف، السودان"},logo:""},
+ {id:"sja",cat:"employer",name:{en:"Sudanese Judicial Authority",ar:"السلطة القضائية السودانية"},title:{en:"Civil Engineer — Engineering Affairs Department",ar:"مهندس مدني — إدارة الشؤون الهندسية"},period:{en:"Jun 2019 – Jun 2020",ar:"يونيو 2019 – يونيو 2020"},place:{en:"Sudan",ar:"السودان"},logo:""},
+ {id:"gaup",cat:"employer",name:{en:"General Administration of Urban Planning and Public Utilities",ar:"الإدارة العامة للتخطيط العمراني والمرافق العامة"},title:{en:"Civil Engineer",ar:"مهندس مدني"},period:{en:"Dec 2018 – Dec 2019",ar:"ديسمبر 2018 – ديسمبر 2019"},place:{en:"Sudan",ar:"السودان"},logo:""},
+ {id:"tawfiq",cat:"employer",name:{en:"Al Tawfiq Engineering Company",ar:"Al Tawfiq Engineering Company"},title:{en:"Trainee Civil Engineer",ar:"مهندس مدني متدرب"},period:{en:"Oct 2017 – Dec 2017",ar:"أكتوبر 2017 – ديسمبر 2017"},place:{en:"Sudan",ar:"السودان"},logo:""},
+ {id:"aramco",cat:"partner",role:"related",name:{en:"Saudi Aramco",ar:"أرامكو السعودية"},short:"",site:"https://www.aramco.com",logo:""},
+ {id:"rtcc",cat:"partner",role:"related",name:{en:"Al-Rashid Trading & Contracting Co.",ar:"شركة الراشد للتجارة والمقاولات"},short:"RTCC",site:"https://www.rtcc.com.sa/",logo:""}];
+/* project-organization roles: "owner" | "supervisor" | "related"; partner roles: "contractor" | "partner" | "related" */
 const PAGE=document.body.dataset.page||"home";
 let PREVIEW=false;try{PREVIEW=/[?&]preview\b/.test(location.search)}catch(e){}
 
@@ -62,8 +72,11 @@ en:{dir:"ltr",lang:"العربية",cv:"Download CV",role:"Civil Engineer",
  prjEmpty:"Project details are being documented and will be published here once confirmed.",prjEmptyCta:"See site photographs",
  prjMore:"Scope of work",logoSlot:"Project logo",viewOrg:"View organization",
  tplNote:"Template preview — sample layout only, not a real project. Visible only with ?preview.",tplName:"Project name",tplLoc:"City, Saudi Arabia",tplType:"Project type",tplSum:"Short description of the engineering works carried out.",
- orgEy:"Project organizations & main contractors",orgH:"Organizations associated with projects I have contributed to",orgL:"Project owners, main contractors and related organizations connected to the projects I have worked on. A listing shows association with a project — not ownership, employment or a client relationship unless stated.",
- orgRoles:{owner:"Project owner",contractor:"Main contractor",related:"Related organization"},
+ orgEy:"Organizations",orgH:"Organizations across my career and projects",orgL:"Employers I have worked for, organizations connected to the projects I have contributed to, and main contractors and partners on those projects. A listing does not imply ownership, or employment unless shown under Employers.",
+ cats:{project:["Project Organizations","Organizations connected to the projects I have worked on — project owners, supervising bodies and other project parties."],employer:["Employers","Companies and public bodies that have employed me, with dates from my professional record."],partner:["Main Contractors & Project Partners","Main contractors, execution partners and related organizations on projects I have worked on."]},
+ orgRoles:{owner:"Project owner",supervisor:"Supervising body",contractor:"Main contractor",partner:"Execution partner",related:"Associated organization"},
+ empNow:"Current employer",empPast:"Previous employer",
+ catEmpty:{project:"Project organizations will be listed here once project details are confirmed."},
  visit:"Official website",linkedPrj:"Related projects",logoPending:"Official logo pending permission",addOrg:"Space for an additional organization",
  tm:"Company names and logos are trademarks of their respective owners and are shown for identification only.",
  eduEy:"Education & certifications",eduH:"Accreditation, education and training",verified:"Verified document",
@@ -105,8 +118,11 @@ ar:{dir:"rtl",lang:"English",cv:"تحميل السيرة الذاتية",role:"�
  prjEmpty:"يجري توثيق تفاصيل المشاريع، وستُنشر هنا بعد اعتمادها.",prjEmptyCta:"عرض صور المواقع",
  prjMore:"نطاق الأعمال",logoSlot:"شعار المشروع",viewOrg:"عرض الجهة",
  tplNote:"معاينة قالب — تصميم توضيحي فقط وليس مشروعاً حقيقياً. يظهر فقط عند استخدام ?preview.",tplName:"اسم المشروع",tplLoc:"المدينة، المملكة العربية السعودية",tplType:"نوع المشروع",tplSum:"وصف مختصر للأعمال الهندسية المنفذة.",
- orgEy:"الجهات المرتبطة بالمشاريع والمقاولون الرئيسيون",orgH:"الجهات والشركات المرتبطة بالمشاريع التي شاركت في العمل عليها",orgL:"الجهات المالكة والمقاولون الرئيسيون والجهات المرتبطة بالمشاريع التي عملت عليها. الإدراج يعني الارتباط بمشروع، ولا يعني الملكية أو التوظيف المباشر أو علاقة عميل ما لم يُذكر ذلك.",
- orgRoles:{owner:"الجهة المالكة",contractor:"المقاول الرئيسي",related:"جهة مرتبطة"},
+ orgEy:"الجهات والشركات",orgH:"الجهات والشركات في مسيرتي المهنية ومشاريعي",orgL:"جهات العمل التي عملت لديها، والجهات المرتبطة بالمشاريع التي شاركت فيها، والمقاولون الرئيسيون والشركاء في تلك المشاريع. الإدراج لا يعني الملكية، ولا التوظيف إلا لما يظهر تحت جهات العمل.",
+ cats:{project:["الجهات المرتبطة بالمشاريع","الجهات المرتبطة بالمشاريع التي عملت عليها — الجهات المالكة والجهات المشرفة وغيرها من أطراف المشروع."],employer:["جهات العمل","الشركات والجهات التي عملت لديها، بالتواريخ الواردة في سجلي المهني."],partner:["المقاولون الرئيسيون وشركاء المشاريع","المقاولون الرئيسيون وشركاء التنفيذ والجهات المرتبطة بالمشاريع التي عملت فيها."]},
+ orgRoles:{owner:"الجهة المالكة",supervisor:"جهة مشرفة",contractor:"المقاول الرئيسي",partner:"شريك تنفيذ",related:"جهة مرتبطة"},
+ empNow:"جهة العمل الحالية",empPast:"جهة عمل سابقة",
+ catEmpty:{project:"ستُدرج الجهات المرتبطة بالمشاريع هنا بعد اعتماد تفاصيل المشاريع."},
  visit:"الموقع الرسمي",linkedPrj:"المشاريع المرتبطة",logoPending:"الشعار الرسمي بانتظار الإذن",addOrg:"مساحة لجهة إضافية",
  tm:"أسماء الشركات وشعاراتها علامات تجارية مملوكة لأصحابها، وتُعرض للتعريف فقط.",
  eduEy:"التعليم والشهادات",eduH:"الاعتماد المهني والتعليم والتدريب",verified:"مستند موثّق",
@@ -299,22 +315,28 @@ function projectsPage(){
 }
 function orgsPage(){
  const t=T[L],a=L=="ar"?1:0,g=o=>o?(a?o.ar:o.en):"";
- const tiles=ORGS.map(o=>{
-  const prj=PROJECTS.filter(p=>p.verified&&(p.ownerId==o.id||p.contractorId==o.id));
-  const host=o.site.replace(/^https?:\/\//,"").replace(/\/$/,"");
+ const tile=o=>{
+  const prj=PROJECTS.filter(p=>p.verified&&[p.ownerId,p.contractorId,...(p.orgIds||[])].includes(o.id));
+  const host=o.site?o.site.replace(/^https?:\/\//,"").replace(/\/$/,""):"";
+  const nm=g(o.name),en=o.name.en;
+  const badge=o.cat=="employer"?`<span class="role ${o.current?"r-owner":"r-related"}">${o.current?t.empNow:t.empPast}</span>`:`<span class="role r-${o.role=="owner"||o.role=="supervisor"?"owner":o.role=="contractor"||o.role=="partner"?"contractor":"related"}">${t.orgRoles[o.role||"related"]}</span>`;
   return `<article class="otile" id="org-${o.id}">
-   <div class="ologo">${o.logo?`<img src="${o.logo}" alt="${esc(g(o.name))}">`:`<div class="oname-tile"><b>${o.short||g(o.name)}</b>${o.short?`<small>${o.name.en}</small>`:""}</div>`}</div>
-   <div class="obody"><h3>${g(o.name)}</h3>${a?`<div class="alt">${o.name.en}${o.short?" ("+o.short+")":""}</div>`:`<div class="alt" lang="ar" dir="rtl">${o.name.ar}</div>`}
-    <span class="role r-${o.role}">${t.orgRoles[o.role]}</span>
+   <div class="ologo">${o.logo?`<img src="${o.logo}" alt="${esc(nm)}">`:`<div class="oname-tile"><b${o.short?"":' class="long"'}>${o.short||nm}</b>${o.short?`<small>${en}</small>`:""}</div>`}</div>
+   <div class="obody"><h3>${nm}</h3>${a&&nm!=en?`<div class="alt">${en}${o.short?" ("+o.short+")":""}</div>`:!a&&o.name.ar!=en?`<div class="alt" lang="ar" dir="rtl">${o.name.ar}</div>`:""}
+    ${badge}
+    ${o.cat=="employer"?`<div class="emp"><b>${g(o.title)}</b><span class="ltrnum">${g(o.period)}</span>${g(o.place)?`<span>${g(o.place)}</span>`:""}</div>`:""}
     ${prj.length?`<div class="oprj"><small>${t.linkedPrj}</small>${prj.map(p=>`<a href="projects.html#${p.id}">${g(p.name)}</a>`).join("")}</div>`:""}
-    <a class="osite" href="${o.site}" rel="noopener">${t.visit} <span class="ltrnum">${host}</span></a>
+    ${o.site?`<a class="osite" href="${o.site}" rel="noopener">${t.visit} <span class="ltrnum">${host}</span></a>`:""}
     ${!o.logo&&PREVIEW?`<span class="draftnote">${t.logoPending}</span>`:""}
-   </div></article>`}).join("");
- const extra=PREVIEW?`<div class="otile add"><span>${t.addOrg}</span></div>`.repeat(2):"";
+   </div></article>`};
+ const order=["project","employer","partner"];
+ const secs=order.map((c,i)=>{const list=ORGS.filter(o=>o.cat==c);const extra=PREVIEW?`<div class="otile add"><span>${t.addOrg}</span></div>`:"";
+  return `<section class="ocat" id="cat-${c}"><div class="ocath"><span class="ltr">${i+1}</span><div><h3>${t.cats[c][0]}<small>${list.length}</small></h3><p>${t.cats[c][1]}</p></div></div>
+   ${list.length?`<div class="ogrid">${list.map(tile).join("")}${extra}</div>`:`<div class="empty"><p>${(t.catEmpty&&t.catEmpty[c])||""}</p></div>${PREVIEW?`<div class="ogrid">${extra}</div>`:""}`}</section>`}).join("");
  return `<section class="band" id="organizations"><div class="wrap">
   <div class="eyebrow">${t.orgEy}</div><h2>${t.orgH}</h2><p class="lede">${t.orgL}</p>
-  <div class="legend">${["owner","contractor","related"].map(r=>`<span><i class="role r-${r}">${t.orgRoles[r]}</i></span>`).join("")}</div>
-  <div class="ogrid">${tiles}${extra}</div>
+  <nav class="cattabs" aria-label="${esc(t.orgEy)}">${order.map(c=>`<a href="#cat-${c}">${t.cats[c][0]} <small>${ORGS.filter(o=>o.cat==c).length}</small></a>`).join("")}</nav>
+  ${secs}
   <p class="note" style="margin-top:28px">${t.tm}</p>
  </div></section>`;
 }
