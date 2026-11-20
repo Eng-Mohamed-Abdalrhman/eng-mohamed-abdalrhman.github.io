@@ -15,25 +15,19 @@ const DOCS=[];
    {verified:true, name:{en:"",ar:""}, owner:{en:"",ar:""}, contractor:{en:"",ar:""}, employer:{en:"",ar:""},
     location:{en:"",ar:""}, type:{en:"",ar:""}, role:{en:"",ar:""}, scope:{en:[""],ar:[""]}, imgs:[17,24]} */
 const PROJECTS=[];
-/* PROJECTS item (publish only after confirmation):
+/* PROJECTS item — add only confirmed projects. While empty, the Projects page shows clearly-labelled design samples.
+   {id:"p1", verified:true, imgs:[17,24,20], name:{en:"",ar:""}, location:{en:"",ar:""},
+    summary:{en:"",ar:""}, work:{en:"",ar:""}, orgIds:["aramco"]}
+   (older field list below kept for reference)
    {id:"p1", verified:true, logo:"assets/logos/p1.png", img:17, imgs:[17,24],
     name:{en:"",ar:""}, location:{en:"",ar:""}, type:{en:"",ar:""}, summary:{en:"",ar:""},
     ownerId:"aramco", contractorId:"rtcc", employer:{en:"",ar:""}, role:{en:"",ar:""}, scope:{en:[],ar:[]}} */
 /* Organizations associated with projects. role: "owner" | "contractor" | "related".
    logo: path in assets/logos/ — only official files used with permission; empty = neutral name tile. */
 const ORGS=[
- /* cat: "project" = organizations of projects Mohamed worked on (owner / supervising / other)
-         "employer" = organizations that actually employed him (from CV)
-         "partner"  = main contractors, execution partners and related organizations of his projects */
- {id:"alrabh",cat:"employer",current:1,name:{en:"Mostafa Mohammed Al-Rabh General Contracting Est.",ar:"Mostafa Mohammed Al-Rabh General Contracting Est."},title:{en:"Civil Engineer",ar:"مهندس مدني"},period:{en:"Feb 2022 – Present",ar:"فبراير 2022 – حتى الآن"},place:{en:"Saudi Arabia",ar:"المملكة العربية السعودية"},logo:""},
- {id:"blanco",cat:"employer",name:{en:"Blanco Group",ar:"Blanco Group"},title:{en:"Engineering Administration Manager",ar:"مدير الإدارة الهندسية"},period:{en:"2020 – Oct 2022",ar:"2020 – أكتوبر 2022"},place:{en:"",ar:""},logo:""},
- {id:"moi",cat:"employer",name:{en:"Ministry of Infrastructure and Urban Development",ar:"وزارة البنى التحتية والتنمية العمرانية"},title:{en:"Civil Engineer",ar:"مهندس مدني"},period:{en:"Sep 2020 – Dec 2020",ar:"سبتمبر 2020 – ديسمبر 2020"},place:{en:"Gedaref State, Sudan",ar:"ولاية القضارف، السودان"},logo:""},
- {id:"sja",cat:"employer",name:{en:"Sudanese Judicial Authority",ar:"السلطة القضائية السودانية"},title:{en:"Civil Engineer — Engineering Affairs Department",ar:"مهندس مدني — إدارة الشؤون الهندسية"},period:{en:"Jun 2019 – Jun 2020",ar:"يونيو 2019 – يونيو 2020"},place:{en:"Sudan",ar:"السودان"},logo:""},
- {id:"gaup",cat:"employer",name:{en:"General Administration of Urban Planning and Public Utilities",ar:"الإدارة العامة للتخطيط العمراني والمرافق العامة"},title:{en:"Civil Engineer",ar:"مهندس مدني"},period:{en:"Dec 2018 – Dec 2019",ar:"ديسمبر 2018 – ديسمبر 2019"},place:{en:"Sudan",ar:"السودان"},logo:""},
- {id:"tawfiq",cat:"employer",name:{en:"Al Tawfiq Engineering Company",ar:"Al Tawfiq Engineering Company"},title:{en:"Trainee Civil Engineer",ar:"مهندس مدني متدرب"},period:{en:"Oct 2017 – Dec 2017",ar:"أكتوبر 2017 – ديسمبر 2017"},place:{en:"Sudan",ar:"السودان"},logo:""},
- {id:"aramco",cat:"partner",role:"related",name:{en:"Saudi Aramco",ar:"أرامكو السعودية"},short:"",site:"https://www.aramco.com",logo:""},
- {id:"rtcc",cat:"partner",role:"related",name:{en:"Al-Rashid Trading & Contracting Co.",ar:"شركة الراشد للتجارة والمقاولات"},short:"RTCC",site:"https://www.rtcc.com.sa/",logo:""}];
-/* project-organization roles: "owner" | "supervisor" | "related"; partner roles: "contractor" | "partner" | "related" */
+ /* Organizations page: logo + name + associated projects (linked via PROJECTS[].orgIds). logo = official file in assets/logos/ (with permission) */
+ {id:"aramco",name:{en:"Saudi Aramco",ar:"أرامكو السعودية"},logo:""},
+ {id:"rtcc",name:{en:"Al-Rashid Trading & Contracting Co. (RTCC)",ar:"شركة الراشد للتجارة والمقاولات"},logo:""}];
 const PAGE=document.body.dataset.page||"home";
 let PREVIEW=false;try{PREVIEW=/[?&]preview\b/.test(location.search)}catch(e){}
 
@@ -66,7 +60,11 @@ en:{dir:"ltr",lang:"العربية",cv:"Download CV",role:"Civil Engineer",
  docEy:"Documentation & reports",docH:"Drawings, quantities and reports",docL:"Samples of technical-office work — AutoCAD drawings, engineering plans, BOQ samples and reports — will be published here.",
  docTypes:[["AutoCAD drawings","Plans, details and sections"],["Engineering plans","Layouts and coordination drawings"],["Technical drawings","Shop and as-built references"],["BOQ samples","Bills of quantities and take-offs"],["Engineering reports","Daily, weekly and highlight reports"],["Project documentation","Requests, submittals and records"]],
  docDraft:"Review note: document samples pending — this block shows only in the review draft.",
- expEy:"Professional experience",expH:"Experience",current:"Current",pages:[["index.html","home","Home"],["projects.html","projects","Projects"],["organizations.html","orgs","Organizations"]],
+ expEy:"Professional experience",expH:"Experience",current:"Current",pages:[["index.html","home","Home"],["projects.html","projects","Projects"],["organizations.html","orgs","Organizations"],["jobs.html","jobs","My Jobs"]],
+ smpName:"Sample Project – Design Preview",smpBadge:"Design preview — not a real project",smpLoc:"Location — to be added",smpSum:"A short description of the project will appear here: its type, scale and purpose.",smpWork:"A summary of the engineering works I took part in will appear here.",
+ prjLoc:"Location",prjWork:"My contribution",
+ orgIntro:"Companies and institutions connected to the projects, work and professional experience of Eng. Mohamed Abdalrhman.",assocP:"Associated Projects",assocNone:"To be added",logoHere:"Logo",
+ jobsEy:"My Jobs",jobsH:"Where I have worked",jobsL:"Companies and public bodies I have worked for, with titles and dates from my CV.",
  prjEy:"Projects",prjH:"Projects I have contributed to",prjL:"Construction, finishing and infrastructure projects, with the organizations involved and my role on each.",
  prjF:{owner:"Project owner",contractor:"Main contractor",employer:"Engaged through",location:"Location",type:"Project type",role:"My role"},
  prjEmpty:"Project details are being documented and will be published here once confirmed.",prjEmptyCta:"See site photographs",
@@ -112,7 +110,11 @@ ar:{dir:"rtl",lang:"English",cv:"تحميل السيرة الذاتية",role:"�
  docEy:"المستندات والتقارير",docH:"المخططات والكميات والتقارير",docL:"ستُنشر هنا نماذج من أعمال المكتب الفني: مخططات AutoCAD والمخططات الهندسية ونماذج جداول الكميات والتقارير.",
  docTypes:[["مخططات AutoCAD","مساقط وتفاصيل وقطاعات"],["المخططات الهندسية","مخططات التوزيع والتنسيق"],["الرسومات الفنية","مخططات تنفيذية ومخططات As-Built"],["نماذج جداول الكميات","جداول الكميات (BOQ) والحصر"],["التقارير الهندسية","تقارير يومية وأسبوعية وتقارير موجزة"],["توثيق المشاريع","الطلبات والاعتمادات والسجلات"]],
  docDraft:"ملاحظة مراجعة: نماذج المستندات قيد التجهيز — يظهر هذا الجزء في مسودة المراجعة فقط.",
- expEy:"الخبرات المهنية",expH:"الخبرات",current:"حالياً",pages:[["index.html","home","الرئيسية"],["projects.html","projects","المشاريع"],["organizations.html","orgs","الجهات والشركات"]],
+ expEy:"الخبرات المهنية",expH:"الخبرات",current:"حالياً",pages:[["index.html","home","الرئيسية"],["projects.html","projects","المشاريع"],["organizations.html","orgs","الجهات والشركات"],["jobs.html","jobs","جهات العمل"]],
+ smpName:"مشروع تجريبي – معاينة التصميم",smpBadge:"معاينة تصميم — ليس مشروعاً حقيقياً",smpLoc:"الموقع — يُضاف لاحقاً",smpSum:"سيظهر هنا وصف مختصر للمشروع: نوعه وحجمه والغرض منه.",smpWork:"سيظهر هنا ملخص الأعمال الهندسية التي شاركت فيها.",
+ prjLoc:"الموقع",prjWork:"مشاركتي",
+ orgIntro:"شركات ومؤسسات ارتبطت بالمشاريع والأعمال والخبرات المهنية للمهندس محمد عبدالرحمن.",assocP:"المشاريع المرتبطة بها",assocNone:"تُضاف لاحقاً",logoHere:"الشعار",
+ jobsEy:"جهات العمل",jobsH:"الجهات التي عملت لديها",jobsL:"الشركات والجهات التي عملت لديها، بالمسميات والتواريخ الواردة في سيرتي الذاتية.",
  prjEy:"المشاريع",prjH:"المشاريع التي شاركت في العمل عليها",prjL:"مشاريع إنشاء وتشطيبات وبنية تحتية، مع الجهات المرتبطة بكل مشروع ودوري فيه.",
  prjF:{owner:"الجهة المالكة",contractor:"المقاول الرئيسي",employer:"جهة العمل",location:"الموقع",type:"نوع المشروع",role:"دوري"},
  prjEmpty:"يجري توثيق تفاصيل المشاريع، وستُنشر هنا بعد اعتمادها.",prjEmptyCta:"عرض صور المواقع",
@@ -265,7 +267,7 @@ ${DOCS.length||CONFIG.draft?`<section class="band" id="documents"><div class="wr
 <section class="band stone" id="experience"><div class="wrap">
  <div class="eyebrow">${t.expEy}<span>07</span></div>
  <h2>${t.expH}</h2>
- <ol class="tl">${EXP.map(e=>`<li><div><div class="when">${e.when[a]}</div>${e.loc[a]?`<div class="loc">${e.loc[a]}</div>`:""}</div><div><h3>${e.t[a]}${e.cur?`<span class="cur">${t.current}</span>`:""}</h3><div class="org">${a?e.orgAr:e.org}</div><ul>${e.b.map(b=>`<li>${b[a]}</li>`).join("")}</ul></div></li>`).join("")}</ol>
+ <ol class="tl">${EXP.map(e=>`<li><div><div class="when">${e.when[a]}</div>${e.loc[a]?`<div class="loc">${e.loc[a]}</div>`:""}</div><div><h3>${e.t[a]}${e.cur?`<span class="cur">${t.current}</span>`:""}</h3><div class="org"><bdi>${a?e.orgAr:e.org}</bdi></div><ul>${e.b.map(b=>`<li>${b[a]}</li>`).join("")}</ul></div></li>`).join("")}</ol>
 </div></section>
 
 <section class="band" id="education"><div class="wrap">
@@ -288,56 +290,48 @@ ${DOCS.length||CONFIG.draft?`<section class="band" id="documents"><div class="wr
 
 const icoBld='<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-4h6v4M9 10h.01M15 10h.01M9 14h.01M15 14h.01"/></svg>';
 const orgById=id=>ORGS.find(o=>o.id==id);
-function projectCard(p,t,a,tpl){
+function projectCard(p,t,a,sample){
  const g=o=>o?(a?o.ar:o.en):"";
- const logo=p.logo?`<img src="${p.logo}" alt="${esc(t.logoSlot)}">`:`<span class="lgph" aria-label="${esc(t.logoSlot)}">${icoBld}</span>`;
- const orgLink=(id,k)=>{const o=orgById(id);return o?`<li><span class="k">${t.prjF[k]}</span><a href="organizations.html#org-${o.id}">${g(o.name)}</a></li>`:""};
- const rows=[orgLink(p.ownerId,"owner"),orgLink(p.contractorId,"contractor"),...["employer","role"].filter(k=>g(p[k])).map(k=>`<li><span class="k">${t.prjF[k]}</span><span>${g(p[k])}</span></li>`)].join("");
- const sc=p.scope?(a?p.scope.ar:p.scope.en):[];
- return `<article class="pcard${tpl?" tpl":""}" id="${p.id||""}">
-  <div class="pimg">${p.img?`<img src="img/thumb/${pad(p.img)}.jpg" alt="${esc(g(p.name))}" loading="lazy" ${p.imgs?`data-open="${p.img}" data-set="pj-${p.id}"`:""}>`:""}<div class="plogo">${logo}</div></div>
+ const im=p.imgs||[];const set=`pj-${p.id}`;
+ return `<article class="pcard${sample?" tpl":""}" id="${p.id}">
+  ${im.length?`<div class="pimg"><img src="img/thumb/${pad(im[0])}.jpg" alt="${esc(g(p.name))}" loading="lazy" data-open="${im[0]}" data-set="${set}">${sample?`<span class="sbadge">${t.smpBadge}</span>`:""}</div>`:""}
+  ${im.length>1?`<div class="pthumbs">${im.slice(1,5).map(n=>`<img src="img/thumb/${pad(n)}.jpg" alt="" loading="lazy" data-open="${n}" data-set="${set}">`).join("")}</div>`:""}
   <div class="pbody"><h3>${g(p.name)}</h3>
-   <div class="pmeta">${g(p.location)?`<span>${g(p.location)}</span>`:""}${g(p.type)?`<span>${g(p.type)}</span>`:""}</div>
+   ${g(p.location)?`<div class="pmeta"><span>${g(p.location)}</span></div>`:""}
    ${g(p.summary)?`<p>${g(p.summary)}</p>`:""}
-   ${rows?`<ul class="kv">${rows}</ul>`:""}
-   ${sc.length?`<details><summary>${t.prjMore}</summary><ul>${sc.map(x=>`<li>${x}</li>`).join("")}</ul></details>`:""}
-   ${p.imgs&&p.imgs.length>1?`<div class="pthumbs">${p.imgs.slice(1,5).map(n=>`<img src="img/thumb/${pad(n)}.jpg" alt="" loading="lazy" data-open="${n}" data-set="pj-${p.id}">`).join("")}</div>`:""}
+   ${g(p.work)?`<div class="pwork"><b>${t.prjWork}</b><p>${g(p.work)}</p></div>`:""}
   </div></article>`;
 }
 function projectsPage(){
  const t=T[L],a=L=="ar"?1:0,pr=PROJECTS.filter(p=>p.verified);
- const tpl=PREVIEW?[1,32,12].map(n=>({img:n,name:{en:t.tplName,ar:t.tplName},location:{en:t.tplLoc,ar:t.tplLoc},type:{en:t.tplType,ar:t.tplType},summary:{en:t.tplSum,ar:t.tplSum}})):[];
+ const smp=[{id:"sample-1",imgs:[19,17,24,20,8]},{id:"sample-2",imgs:[32,37,43,48,41]}].map(x=>({...x,name:{en:t.smpName,ar:t.smpName},location:{en:t.smpLoc,ar:t.smpLoc},summary:{en:t.smpSum,ar:t.smpSum},work:{en:t.smpWork,ar:t.smpWork}}));
  return `<section class="band" id="projects"><div class="wrap">
-  <div class="eyebrow">${t.prjEy}</div><h2>${t.prjH}</h2><p class="lede">${t.prjL}</p>
-  ${pr.length?`<div class="pgrid">${pr.map(p=>projectCard(p,t,a)).join("")}</div>`:`<div class="empty"><p>${t.prjEmpty}</p><a class="btn s" href="index.html#gallery">${t.prjEmptyCta}</a></div>`}
-  ${tpl.length?`<p class="draftnote">${t.tplNote}</p><div class="pgrid">${tpl.map(p=>projectCard(p,t,a,1)).join("")}</div>`:""}
+  <div class="eyebrow">${t.prjEy}</div><h2>${t.prjH}</h2>
+  <div class="pgrid two">${(pr.length?pr.map(p=>projectCard(p,t,a)):smp.map(p=>projectCard(p,t,a,1))).join("")}</div>
  </div></section>`;
 }
 function orgsPage(){
  const t=T[L],a=L=="ar"?1:0,g=o=>o?(a?o.ar:o.en):"";
- const tile=o=>{
-  const prj=PROJECTS.filter(p=>p.verified&&[p.ownerId,p.contractorId,...(p.orgIds||[])].includes(o.id));
-  const host=o.site?o.site.replace(/^https?:\/\//,"").replace(/\/$/,""):"";
-  const nm=g(o.name),en=o.name.en;
-  const badge=o.cat=="employer"?`<span class="role ${o.current?"r-owner":"r-related"}">${o.current?t.empNow:t.empPast}</span>`:`<span class="role r-${o.role=="owner"||o.role=="supervisor"?"owner":o.role=="contractor"||o.role=="partner"?"contractor":"related"}">${t.orgRoles[o.role||"related"]}</span>`;
-  return `<article class="otile" id="org-${o.id}">
-   <div class="ologo">${o.logo?`<img src="${o.logo}" alt="${esc(nm)}">`:`<div class="oname-tile"><b${o.short?"":' class="long"'}>${o.short||nm}</b>${o.short?`<small>${en}</small>`:""}</div>`}</div>
-   <div class="obody"><h3>${nm}</h3>${a&&nm!=en?`<div class="alt">${en}${o.short?" ("+o.short+")":""}</div>`:!a&&o.name.ar!=en?`<div class="alt" lang="ar" dir="rtl">${o.name.ar}</div>`:""}
-    ${badge}
-    ${o.cat=="employer"?`<div class="emp"><b>${g(o.title)}</b><span class="ltrnum">${g(o.period)}</span>${g(o.place)?`<span>${g(o.place)}</span>`:""}</div>`:""}
-    ${prj.length?`<div class="oprj"><small>${t.linkedPrj}</small>${prj.map(p=>`<a href="projects.html#${p.id}">${g(p.name)}</a>`).join("")}</div>`:""}
-    ${o.site?`<a class="osite" href="${o.site}" rel="noopener">${t.visit} <span class="ltrnum">${host}</span></a>`:""}
-    ${!o.logo&&PREVIEW?`<span class="draftnote">${t.logoPending}</span>`:""}
-   </div></article>`};
- const order=["project","employer","partner"];
- const secs=order.map((c,i)=>{const list=ORGS.filter(o=>o.cat==c);const extra=PREVIEW?`<div class="otile add"><span>${t.addOrg}</span></div>`:"";
-  return `<section class="ocat" id="cat-${c}"><div class="ocath"><span class="ltr">${i+1}</span><div><h3>${t.cats[c][0]}<small>${list.length}</small></h3><p>${t.cats[c][1]}</p></div></div>
-   ${list.length?`<div class="ogrid">${list.map(tile).join("")}${extra}</div>`:`<div class="empty"><p>${(t.catEmpty&&t.catEmpty[c])||""}</p></div>${PREVIEW?`<div class="ogrid">${extra}</div>`:""}`}</section>`}).join("");
  return `<section class="band" id="organizations"><div class="wrap">
-  <div class="eyebrow">${t.orgEy}</div><h2>${t.orgH}</h2><p class="lede">${t.orgL}</p>
-  <nav class="cattabs" aria-label="${esc(t.orgEy)}">${order.map(c=>`<a href="#cat-${c}">${t.cats[c][0]} <small>${ORGS.filter(o=>o.cat==c).length}</small></a>`).join("")}</nav>
-  ${secs}
+  <div class="eyebrow">${t.pages[2][2]}</div><h2>${t.pages[2][2]}</h2><p class="lede">${t.orgIntro}</p>
+  <div class="ogrid simple">${ORGS.map(o=>{const prj=PROJECTS.filter(p=>p.verified&&(p.orgIds||[]).includes(o.id));
+   return `<article class="otile" id="org-${o.id}">
+    <div class="ologo">${o.logo?`<img src="${o.logo}" alt="${esc(g(o.name))}">`:`<span class="lslot">${t.logoHere}</span>`}</div>
+    <div class="obody"><h3>${g(o.name)}</h3>${a?`<div class="alt"><bdi>${o.name.en}</bdi></div>`:`<div class="alt" lang="ar" dir="rtl">${o.name.ar}</div>`}
+     <div class="assoc"><small>${t.assocP}:</small>${prj.length?`<ul>${prj.map(p=>`<li><a href="projects.html#${p.id}">${g(p.name)}</a></li>`).join("")}</ul>`:`<ul><li class="none">${t.assocNone}</li></ul>`}</div>
+    </div></article>`}).join("")}</div>
   <p class="note" style="margin-top:28px">${t.tm}</p>
+ </div></section>`;
+}
+function jobsPage(){
+ const t=T[L],a=L=="ar"?1:0;
+ return `<section class="band" id="jobs"><div class="wrap">
+  <div class="eyebrow">${t.jobsEy}</div><h2>${t.jobsH}</h2><p class="lede">${t.jobsL}</p>
+  <div class="jgrid">${EXP.map(e=>`<article class="jcard${e.cur?" now":""}">
+   <div class="jtop"><span class="when">${e.when[a]}</span>${e.cur?`<span class="cur">${t.current}</span>`:""}</div>
+   <h3><bdi>${a?e.orgAr:e.org}</bdi></h3>
+   <div class="jt">${e.t[a]}${e.loc[a]?` · <span>${e.loc[a]}</span>`:""}</div>
+   <ul>${e.b.map(b=>`<li>${b[a]}</li>`).join("")}</ul></article>`).join("")}</div>
  </div></section>`;
 }
 function renderGallery(){
@@ -353,13 +347,13 @@ let io;
 function render(keep){
  const t=T[L];
  document.documentElement.lang=L;document.documentElement.dir=t.dir;
- const sub={projects:[t.prjEy,t.prjEy],orgs:[t.pages[2][2],t.pages[2][2]]}[PAGE];document.title=(sub?sub[0]+" — ":"")+(L=="ar"?CONFIG.name.ar+" — مهندس مدني":"Mohamed Abdalrhman Elyas Ahmed — Civil Engineer");
+ const sub={projects:[t.prjEy],orgs:[t.pages[2][2]],jobs:[t.pages[3][2]]}[PAGE];document.title=(sub?sub[0]+" — ":"")+(L=="ar"?CONFIG.name.ar+" — مهندس مدني":"Mohamed Abdalrhman Elyas Ahmed — Civil Engineer");
  document.getElementById("hdrName").textContent=CONFIG.name[L];
  document.getElementById("hdrRole").textContent=t.role;
  document.getElementById("hdrCv").textContent=t.cv;
  const lb=document.getElementById("lang");lb.textContent=t.lang;lb.lang=L=="ar"?"en":"ar";lb.setAttribute("aria-label",L=="ar"?"Switch to English":"التبديل إلى العربية");
  document.getElementById("secnav").innerHTML=(PAGE=="home"?t.nav:[]).filter(n=>n[0]!="home"&&(n[0]!="documents"||DOCS.length||CONFIG.draft)).map(([id,l])=>`<a href="#${id}" data-id="${id}">${l}</a>`).join("");
- document.getElementById("app").innerHTML=PAGE=="projects"?projectsPage():PAGE=="orgs"?orgsPage():page();
+ document.getElementById("app").innerHTML=PAGE=="projects"?projectsPage():PAGE=="orgs"?orgsPage():PAGE=="jobs"?jobsPage():page();
  document.getElementById("pagenav").innerHTML=t.pages.map(([h,k,l])=>`<a href="${h}"${k==PAGE?' aria-current="page" class="on"':""}>${l}</a>`).join("");
  document.getElementById("secnav").hidden=PAGE!="home";
  document.getElementById("foot1").textContent=CONFIG.name[L]+" · "+t.foot1;

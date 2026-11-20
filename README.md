@@ -3,7 +3,7 @@
 Bilingual (English / Arabic) personal engineering portfolio, published with GitHub Pages.
 
 ## Structure
-- `index.html` (home), `projects.html`, `organizations.html` — thin shells; all content and logic in `assets/app.js`, styles in `assets/site.css`.
+- `index.html` (home), `projects.html`, `organizations.html`, `jobs.html` (My Jobs, built from `EXP`) — thin shells; all content and logic in `assets/app.js`, styles in `assets/site.css`.
 - Add `?preview` to any page URL to see template cards and logo placeholders.
 
 ## How to update
