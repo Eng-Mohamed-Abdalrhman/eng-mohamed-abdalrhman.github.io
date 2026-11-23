@@ -263,3 +263,16 @@ html[lang=ar] .oname-tile b.long{font-family:"IBM Plex Sans Arabic",sans-serif}
 .jt{color:var(--mute);font-size:15px;margin-top:4px}
 .jcard ul{margin:12px 0 0;padding-inline-start:20px;font-size:15px}
 @media(max-width:760px){.pgrid.two,.jgrid{grid-template-columns:1fr}}
+
+/* 2026-11-23 */
+.dot{width:7px;height:7px;border-radius:50%;background:var(--brass);flex:none;transform:translateY(-2px)}
+.cap li,.area li{align-items:center}
+.pgroup{margin-top:40px}
+.gh{font-size:20px;padding-bottom:12px;border-bottom:1px solid var(--line)}.gh small{font-size:14px;color:var(--mute);font-weight:500;margin-inline-start:10px}
+.pgroup .pgrid{margin-top:20px}
+.pimg.noph{aspect-ratio:16/10;display:grid;place-items:center;background:var(--stone);border-bottom:1px dashed var(--line)}
+.pimg.noph span{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--brass)}
+.pimg.noph small{color:var(--mute);font-size:13px}
+.tbd{color:var(--mute);font-style:italic}
+.lslot{flex-direction:column;gap:6px;color:var(--brass)}.lslot small{color:#8a979e}
+.ogrid.simple .obody h3{font-size:17px}
