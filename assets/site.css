@@ -276,3 +276,5 @@ html[lang=ar] .oname-tile b.long{font-family:"IBM Plex Sans Arabic",sans-serif}
 .tbd{color:var(--mute);font-style:italic}
 .lslot{flex-direction:column;gap:6px;color:var(--brass)}.lslot small{color:#8a979e}
 .ogrid.simple .obody h3{font-size:17px}
+
+.ologo img{width:auto;height:auto;max-width:80%;max-height:120px;object-fit:contain}

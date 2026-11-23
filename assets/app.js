@@ -42,16 +42,16 @@ const PROJECTS=[
 /* Organizations associated with projects. role: "owner" | "contractor" | "related".
    logo: path in assets/logos/ — only official files used with permission; empty = neutral name tile. */
 const ORGS=[
- /* logo: official file in assets/logos/ — none added yet (see README). Names verified against public sources where possible. */
- {id:"aramco",name:{en:"Saudi Aramco",ar:"أرامكو السعودية"},logo:""},
- {id:"arsal",name:{en:"Arsal",ar:"شركة إرسال"},logo:""},
- {id:"rashed",name:{en:"Rashed Abdul Rahman Al Rashed & Sons Group",ar:"مجموعة راشد عبدالرحمن الراشد وأولاده"},logo:""},
- {id:"abhar",name:{en:"Abhar Real Estate",ar:"شركة أبهار العقارية"},logo:""},
- {id:"qahtani",name:{en:"Al Qahtani Group",ar:"مجموعة القحطاني"},logo:""},
- {id:"almajdouie",name:{en:"Almajdouie",ar:"المجدوعي"},logo:""},
- {id:"kfupm",name:{en:"King Fahd University of Petroleum & Minerals",ar:"جامعة الملك فهد للبترول والمعادن"},logo:""},
- {id:"wood",name:{en:"Wood",ar:"وود"},logo:""},
- {id:"sda",name:{en:"Sharqia Development Authority",ar:"هيئة تطوير المنطقة الشرقية"},logo:""}];
+ /* logo: official files supplied by the user (originals kept in ORGANIZATIONS_LOGOS pack); web copies in assets/logos/. Names verified against public sources where possible. */
+ {id:"aramco",name:{en:"Saudi Aramco",ar:"أرامكو السعودية"},logo:"assets/logos/aramco.png"},
+ {id:"arsal",name:{en:"Arsal",ar:"شركة إرسال"},logo:"assets/logos/arsal.png"},
+ {id:"rashed",name:{en:"Rashed Abdul Rahman Al Rashed & Sons Group",ar:"مجموعة راشد عبدالرحمن الراشد وأولاده"},logo:"assets/logos/rashed.png"},
+ {id:"abhar",name:{en:"Abhar Real Estate",ar:"شركة أبهار العقارية"},logo:"assets/logos/abhar.png"},
+ {id:"qahtani",name:{en:"Al Qahtani Group",ar:"مجموعة القحطاني"},logo:"assets/logos/qahtani.png"},
+ {id:"almajdouie",name:{en:"Almajdouie",ar:"المجدوعي"},logo:"assets/logos/almajdouie.png"},
+ {id:"kfupm",name:{en:"King Fahd University of Petroleum and Minerals (KFUPM)",ar:"جامعة الملك فهد للبترول والمعادن"},logo:"assets/logos/kfupm.png"},
+ {id:"wood",name:{en:"Wood",ar:"وود"},logo:"assets/logos/wood.png"},
+ {id:"sda",name:{en:"Sharqia Development Authority",ar:"هيئة تطوير المنطقة الشرقية"},logo:"assets/logos/sda.png"}];
 const PAGE=document.body.dataset.page||"home";
 let PREVIEW=false;try{PREVIEW=/[?&]preview\b/.test(location.search)}catch(e){}
 
