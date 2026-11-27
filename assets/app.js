@@ -16,16 +16,27 @@ const DOCS=[];
 const SCE={id:"sce-professional-accreditation",no:"1014930",start:["03 February 2024","03 فبراير 2024"],until:["02 March 2027","02 مارس 2027"]};
 const BIM={id:"bim-diploma",hours:220,all:"docs/certs/bim-diploma-all-certificates.pdf",
  parts:"BIM Execution Plan · BIM Standards and Codes · Revit · Families · Revit Advanced · Navisworks · 4D & 5D Simulation · Autodesk Construction Cloud · BIM 360 · Dynamo"};
-const COURSES=[ /* [id, title, hours, from, to] — exactly as printed on each certificate */
+const COURSES=[ /* [id, title, hours, from, to] — exactly as printed on each certificate (Mkademy) */
  ["bim-execution-plan","BIM Execution Plan",12,"31/12/2025","11/01/2026"],
  ["bim-standards-codes","BIM Standards and Codes",16,"18/01/2026","04/02/2026"],
  ["revit","Revit",32,"08/02/2026","15/03/2026"],
- ["families","Families",20,"29/03/2026","12/04/2026"],
+ ["families","Revit Families",20,"29/03/2026","12/04/2026"],
  ["revit-advanced","Revit Advanced",20,"19/04/2026","03/05/2026"],
  ["autodesk-construction-cloud","Autodesk Construction Cloud",48,"13/05/2026","05/07/2026"],
+ ["navisworks","Navisworks",32,"23/07/2026","17/08/2026"],
  ["dynamo","Dynamo",16,"08/07/2026","19/07/2026"],
- ["navisworks","NavisWorks",32,"23/07/2026","17/08/2026"],
  ["4d-5d-simulation","4D & 5D Simulation",12,"25/08/2026","01/09/2026"]];
+const SEC={id:"sudanese-engineering-council-registration",no:"76677",reg:["27 September 2022","27 سبتمبر 2022"],iss:["28 September 2022","28 سبتمبر 2022"]};
+/* Other certificates: t/by/topic = [en, ar]; h = hours; d = dates exactly as printed */
+const OTHER={
+ tech:[{id:"jelecom-civil-engineering-training",t:["Professional Training in Civil Engineering","التدريب المهني في الهندسة المدنية"],by:["JELECOM","JELECOM"],h:72,d:["08/02/2015","10/03/2015"],
+   topic:["AutoCAD · SAP · ETABS · CSI Column · PlanSwift · Grade: Excellent","AutoCAD · SAP · ETABS · CSI Column · PlanSwift · التقدير: ممتاز"]}],
+ mgmt:[{id:"edraak-effective-leadership-management",t:["Effective Leadership and Management","القيادة المؤثرة والإدارة الفعالة"],by:["Edraak","إدراك"],h:2,d:["06/07/2020"],
+   topic:["Leadership and management concepts; developing leadership and management skills","مفاهيم القيادة والإدارة، وتطوير المهارات القيادية والإدارية"]},
+  {id:"arees-personal-strategic-planning",t:["Personal Strategic Planning","التخطيط الاستراتيجي الشخصي"],by:["AREES International University — Germany","AREES International University — Germany"],d:["23/10/2017","28/10/2017"],
+   topic:["Training course held in Khartoum, Sudan","دورة تدريبية أقيمت في الخرطوم، السودان"]}],
+ extra:[{id:"zain-marketing-products-services",t:["Marketing, Products and Services — Training","تدريب في التسويق والمنتجات والخدمات"],by:["The Sudanese Mobile Telephone (Zain) Company Ltd.","شركة زين للهاتف السيار (السودان)"],d:["25/09/2014","04/11/2014"],
+   topic:["Marketing overview and product development process","مقدمة في التسويق وعملية تطوير المنتجات"]}]};
 /* Projects — add only after confirmation. Owner, main contractor and employer are separate fields.
    {verified:true, name:{en:"",ar:""}, owner:{en:"",ar:""}, contractor:{en:"",ar:""}, employer:{en:"",ar:""},
     location:{en:"",ar:""}, type:{en:"",ar:""}, role:{en:"",ar:""}, scope:{en:[""],ar:[""]}, imgs:[17,24]} */
@@ -122,8 +133,10 @@ en:{dir:"ltr",lang:"العربية",cv:"Download CV",role:"Civil Engineer",
  email:"Email",phone:"Phone / WhatsApp",cvrow:"Curriculum vitae",cvlink:"Download CV (PDF)",
  foot1:"Civil Engineer · Kingdom of Saudi Arabia",foot2:"Updated November 2026",
  prev:"←",next:"→",close:"Close",
- cEy:"Certifications & Professional Training",cH:"Certifications & Professional Training",cL:"Professional accreditation, a 220-hour BIM diploma and nine specialised technical courses. Each card opens the original certificate.",
- cG:["Professional Accreditation","Professional Diploma","Specialized Technical Courses"],
+ cEy:"Certifications & Professional Training",cH:"Certifications & Professional Training",cL:"Professional accreditation and registration, a 220-hour BIM diploma with its specialised courses, engineering software training, and management development. Each card opens the original certificate.",
+ cG:["Professional Accreditation & Registration","Professional Diploma & Technical Certifications","Management & Professional Development","Additional Professional Training"],
+ secT:"Sudanese Engineering Council — Professional Registration",secK:[["Registration No.","no"],["Registration grade","Graduate Engineer"],["Specialization","Civil Engineering (Roads & Transportation)"],["Registered on","reg"],["Certificate issued","iss"],["Registered in","Sudan"]],
+ bimCourses:"BIM Diploma courses (Mkademy)",engTr:"Engineering software training",by:"Issued by",issued:"Issued",
  sceT:"Saudi Council of Engineers — Professional Accreditation",sceK:[["Membership No.","no"],["Category","Engineer"],["Specialization","Civil Engineering"],["Accreditation start","start"],["Valid until","until"]],
  bimT:"BIM Diploma — 220 Hours",bimK:[["Provider","Mkademy Engineering Training Courses"],["Software","Revit — Navisworks"],["Duration","220 hours"]],bimP:"Covers",
  crs:"Course",hrs:"hours",from:"From",to:"to",pdf:"Open PDF",view:"View",allPdf:"All BIM certificates (PDF)",certsAll:"All certificates",
@@ -179,8 +192,10 @@ ar:{dir:"rtl",lang:"English",cv:"تحميل السيرة الذاتية",role:"�
  email:"البريد الإلكتروني",phone:"الهاتف / واتساب",cvrow:"السيرة الذاتية",cvlink:"تحميل السيرة الذاتية (PDF)",
  foot1:"مهندس مدني · المملكة العربية السعودية",foot2:"آخر تحديث: نوفمبر 2026",
  prev:"→",next:"←",close:"إغلاق",
- cEy:"الشهادات والدورات التدريبية",cH:"الشهادات والدورات التدريبية",cL:"الاعتماد المهني، ودبلوم BIM بمدة 220 ساعة، وتسع دورات تقنية متخصصة. كل بطاقة تفتح الشهادة الأصلية.",
- cG:["الاعتماد المهني","الدبلوم المهني","الدورات التقنية المتخصصة"],
+ cEy:"الشهادات والدورات التدريبية",cH:"الشهادات والدورات التدريبية",cL:"الاعتماد والتسجيل المهني، ودبلوم BIM بمدة 220 ساعة مع دوراته المتخصصة، والتدريب على البرامج الهندسية، والتطوير الإداري. كل بطاقة تفتح الشهادة الأصلية.",
+ cG:["الاعتماد والتسجيل المهني","الدبلوم المهني والشهادات التقنية","الإدارة والتطوير المهني","تدريب مهني إضافي"],
+ secT:"التسجيل المهني — المجلس الهندسي السوداني",secK:[["رقم التسجيل","no"],["درجة التسجيل","مهندس خريج"],["التخصص","هندسة مدنية (طرق ونقل)"],["تاريخ التسجيل","reg"],["تاريخ إصدار الشهادة","iss"],["جهة التسجيل","السودان"]],
+ bimCourses:"دورات دبلوم BIM ‏(Mkademy)",engTr:"التدريب على البرامج الهندسية",by:"الجهة",issued:"صدرت",
  sceT:"الاعتماد المهني — الهيئة السعودية للمهندسين",sceK:[["رقم العضوية","no"],["الفئة","مهندس"],["التخصص","هندسة مدنية"],["تاريخ بداية الاعتماد","start"],["صالح حتى","until"]],
  bimT:"دبلوم نمذجة معلومات البناء (BIM) — 220 ساعة",bimK:[["الجهة","Mkademy Engineering Training Courses"],["البرامج","Revit — Navisworks"],["المدة","220 ساعة"]],bimP:"المحاور",
  crs:"دورة",hrs:"ساعة",from:"من",to:"إلى",pdf:"فتح ملف PDF",view:"عرض",allPdf:"جميع شهادات BIM (PDF)",certsAll:"جميع الشهادات",
@@ -239,9 +254,10 @@ const EXP=[
   b:[["Assisted in basic site supervision and reviewed simple technical drawings.","المساعدة في الإشراف الميداني ومراجعة الرسومات الفنية البسيطة."]]}];
 const EDU=[
  {ok:1,en:["Professional Accreditation — Engineer","Saudi Council of Engineers · Civil Engineering · Membership No. 1014930 · valid until 02 March 2027"],ar:["الاعتماد المهني — مهندس","الهيئة السعودية للمهندسين · هندسة مدنية · رقم العضوية 1014930 · صالح حتى 02 مارس 2027"]},
+ {ok:1,en:["Professional Registration — Graduate Engineer","Sudanese Engineering Council · Civil Engineering (Roads & Transportation) · Registration No. 76677 · since September 2022"],ar:["التسجيل المهني — مهندس خريج","المجلس الهندسي السوداني · هندسة مدنية (طرق ونقل) · رقم التسجيل 76677 · منذ سبتمبر 2022"]},
  {ok:1,en:["BIM Diploma — 220 Hours","Mkademy · Revit — Navisworks · nine specialised courses, Dec 2025 – Sep 2026"],ar:["دبلوم نمذجة معلومات البناء (BIM) — 220 ساعة","Mkademy · Revit — Navisworks · تسع دورات متخصصة، ديسمبر 2025 – سبتمبر 2026"]},
  {en:["B.Sc. (Honours) Civil Engineering","Highway & Transportation · Sudan University of Science and Technology · 2013 – 2018"],ar:["بكالوريوس الهندسة المدنية (مرتبة الشرف)","تخصص الطرق والنقل · جامعة السودان للعلوم والتكنولوجيا · 2013 – 2018"]},
- {en:["Professional training",""],ar:["التدريب المهني",""],list:[["AutoCAD, SAP2000, ETABS, CSI Column, PlanSwift — JELECOM, 2015","AutoCAD وSAP2000 وETABS وCSI Column وPlanSwift — JELECOM، 2015"],["Impactful Leadership & Effective Management — Edraak, 2020","القيادة المؤثرة والإدارة الفعّالة — إدراك، 2020"],["Personal Strategic Planning — AREES International University, 2020","التخطيط الاستراتيجي الشخصي — جامعة أريس الدولية، 2020"]]}];
+ {en:["Professional training",""],ar:["التدريب المهني",""],list:[["Professional Training in Civil Engineering (AutoCAD, SAP, ETABS, CSI Column, PlanSwift) — JELECOM, 72 h, 2015","التدريب المهني في الهندسة المدنية (AutoCAD وSAP وETABS وCSI Column وPlanSwift) — JELECOM، ‏72 ساعة، 2015"],["Effective Leadership and Management — Edraak, 2020","القيادة المؤثرة والإدارة الفعالة — إدراك، 2020"],["Personal Strategic Planning — AREES International University, 2017","التخطيط الاستراتيجي الشخصي — AREES International University، ‏2017"],["Marketing, Products and Services — Zain, 2014","التسويق والمنتجات والخدمات — زين، 2014"]]}];
 
 /* ===== render ===== */
 const pad=n=>String(n).padStart(2,"0");
@@ -267,22 +283,42 @@ function certsPage(){
  const t=T[L],a=L=="ar"?1:0;
  const kv=(k,v)=>`<div><dt>${k}</dt><dd>${v}</dd></div>`;
  const shot=(id,alt,big)=>`<button class="cshot${big?" big":""}" data-cert="${id}" aria-label="${esc(t.view+" — "+alt)}"><img src="img/certs/${id}-t.jpg" alt="${esc(alt)}" loading="lazy" width="640" height="452"></button>`;
+ const pdfBtn=id=>`<a class="btn p" href="docs/certs/${id}.pdf" target="_blank" rel="noopener">${ico.file}${t.pdf}</a>`;
  const sceV={no:`<span class="ltrnum">${SCE.no}</span>`,start:SCE.start[a],until:SCE.until[a]};
+ const secV={no:`<span class="ltrnum">${SEC.no}</span>`,reg:SEC.reg[a],iss:SEC.iss[a]};
+ const dates=d=>d.length>1?`${t.from} <span class="ltrnum">${d[0]}</span> ${t.to} <span class="ltrnum">${d[1]}</span>`:`${t.issued} <span class="ltrnum">${d[0]}</span>`;
+ let n=0;const num=()=>`<span class="cn ltrnum">${pad(++n)}</span>`;
+ const course=c=>`<article class="ccard">${shot(c[0],c[1])}<div class="cbody">${num()}<h4><bdi>${c[1]}</bdi></h4>
+   <p class="cmeta"><span class="ltrnum">${c[2]}</span> ${t.hrs} · ${dates([c[3],c[4]])}</p>
+   <a class="clink" href="docs/certs/${c[0]}.pdf" target="_blank" rel="noopener">${t.pdf}</a></div></article>`;
+ const other=o=>`<article class="ccard">${shot(o.id,o.t[a])}<div class="cbody">${num()}<h4>${o.t[a]}</h4>
+   <p class="cmeta"><b>${t.by}:</b> <bdi>${o.by[a]}</bdi></p>
+   <p class="cmeta">${o.h?`<span class="ltrnum">${o.h}</span> ${t.hrs} · `:""}${dates(o.d)}</p>
+   <p class="cmeta">${o.topic[a]}</p>
+   <a class="clink" href="docs/certs/${o.id}.pdf" target="_blank" rel="noopener">${t.pdf}</a></div></article>`;
+ const total=2+1+COURSES.length+OTHER.tech.length+OTHER.mgmt.length+OTHER.extra.length;
  return `<section class="band" id="certs"><div class="wrap">
-  <div class="eyebrow">${t.cEy}<span class="ltrnum">${COURSES.length+2}</span></div><h2>${t.cH}</h2><p class="lede">${t.cL}</p>
+  <div class="eyebrow">${t.cEy}<span class="ltrnum">${total}</span></div><h2>${t.cH}</h2><p class="lede">${t.cL}</p>
   <h3 class="cgrp"><small>01</small>${t.cG[0]}</h3>
   <article class="ccard feat">${shot(SCE.id,t.sceT,1)}<div class="cbody"><h4>${t.sceT}</h4>
    <dl>${t.sceK.map(([k,v])=>kv(k,sceV[v]||v)).join("")}</dl>
-   <div class="cact"><a class="btn p" href="docs/certs/${SCE.id}.pdf" target="_blank" rel="noopener">${ico.file}${t.pdf}</a></div></div></article>
+   <div class="cact">${pdfBtn(SCE.id)}</div></div></article>
+  <article class="ccard feat" style="margin-top:18px">${shot(SEC.id,t.secT,1)}<div class="cbody"><h4>${t.secT}</h4>
+   <dl>${t.secK.map(([k,v])=>kv(k,secV[v]||v)).join("")}</dl>
+   <div class="cact">${pdfBtn(SEC.id)}</div></div></article>
   <h3 class="cgrp"><small>02</small>${t.cG[1]}</h3>
   <article class="ccard feat">${shot(BIM.id,t.bimT,1)}<div class="cbody"><h4>${t.bimT}</h4>
    <dl>${t.bimK.map(([k,v])=>kv(k,v)).join("")}</dl>
    <p class="cparts"><b>${t.bimP}:</b> <bdi>${BIM.parts}</bdi></p>
-   <div class="cact"><a class="btn p" href="docs/certs/${BIM.id}.pdf" target="_blank" rel="noopener">${ico.file}${t.pdf}</a><a class="btn s" href="${BIM.all}" target="_blank" rel="noopener">${t.allPdf}</a></div></div></article>
+   <div class="cact">${pdfBtn(BIM.id)}<a class="btn s" href="${BIM.all}" target="_blank" rel="noopener">${t.allPdf}</a></div></div></article>
+  <p class="csub">${t.bimCourses}</p>
+  <div class="cgrid">${COURSES.map(course).join("")}</div>
+  <p class="csub">${t.engTr}</p>
+  <div class="cgrid">${OTHER.tech.map(other).join("")}</div>
   <h3 class="cgrp"><small>03</small>${t.cG[2]}</h3>
-  <div class="cgrid">${COURSES.map((c,i)=>`<article class="ccard">${shot(c[0],c[1])}<div class="cbody"><span class="cn ltrnum">${pad(i+1)}</span><h4><bdi>${c[1]}</bdi></h4>
-   <p class="cmeta"><span class="ltrnum">${c[2]}</span> ${t.hrs} · ${t.from} <span class="ltrnum">${c[3]}</span> ${t.to} <span class="ltrnum">${c[4]}</span></p>
-   <a class="clink" href="docs/certs/${c[0]}.pdf" target="_blank" rel="noopener">${t.pdf}</a></div></article>`).join("")}</div>
+  <div class="cgrid">${(n=0,OTHER.mgmt.map(other).join(""))}</div>
+  <h3 class="cgrp"><small>04</small>${t.cG[3]}</h3>
+  <div class="cgrid">${(n=0,OTHER.extra.map(other).join(""))}</div>
  </div></section>`;
 }
 function page(){
