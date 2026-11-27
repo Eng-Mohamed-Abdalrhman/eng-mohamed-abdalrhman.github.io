@@ -189,7 +189,7 @@ ar:{dir:"rtl",lang:"English",cv:"تحميل السيرة الذاتية",role:"�
 /* d = documented (CV or photographs), r = related working knowledge */
 const CAPS=[
  {l:"A",en:["Engineering Design & Drafting","Drawings, drawing review and design coordination."],ar:["التصميم والرسم الهندسي","المخططات ومراجعتها والتنسيق التصميمي."],i:[
-  ["AutoCAD","AutoCAD"],["Engineering drawings","المخططات الهندسية"],["Technical drawings","الرسومات الفنية"],["Drawing review","مراجعة المخططات"],["Design coordination","التنسيق التصميمي"],["Engineering documentation","التوثيق الهندسي"],["Revit (training, 2025)","Revit (تدريب، 2025)"],["BIM standards (training, 2025)","معايير BIM (تدريب، 2025)"]]},
+  ["AutoCAD","AutoCAD"],["Engineering drawings","المخططات الهندسية"],["Technical drawings","الرسومات الفنية"],["Drawing review","مراجعة المخططات"],["Design coordination","التنسيق التصميمي"],["Engineering documentation","التوثيق الهندسي"],["Revit & Navisworks (BIM Diploma training)","Revit وNavisworks (تدريب — دبلوم BIM)"],["BIM standards & execution planning (training)","معايير BIM وخطة التنفيذ (تدريب)"]]},
  {l:"B",en:["Quantity Surveying & Estimation","Quantities, measurement and cost inputs."],ar:["حصر الكميات والتقدير","الكميات والقياس ومدخلات التكلفة."],i:[
   ["Bill of Quantities (BOQ)","جداول الكميات (BOQ)"],["Quantity take-off","حصر الكميات"],["Material quantity calculations","حساب كميات المواد"],["Quantity verification","التحقق من الكميات"],["Cost estimation","تقدير التكاليف"],["Material requirements","احتياجات المواد"]]},
  {l:"C",en:["Commercial & Project Documentation","Reports, commercial documents and procurement records."],ar:["المستندات التجارية ومستندات المشروع","التقارير والمستندات التجارية وسجلات المشتريات."],i:[
