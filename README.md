@@ -22,3 +22,4 @@ Bilingual (English / Arabic) personal engineering portfolio, published with GitH
 - Previews: `img/certs/<id>.jpg` (large, lightbox) and `img/certs/<id>-t.jpg` (card thumbnail), rendered from the PDFs without cropping.
 - Data: `SCE`, `BIM` and `COURSES` at the top of `assets/app.js`. To add a certificate: put the PDF in `docs/certs/`, render the two JPGs, add a row to `COURSES`.
 - Contact icons (WhatsApp / call / email) come from `reach()` in `assets/app.js` and use `CONFIG.whatsapp`, `CONFIG.phoneHref`, `CONFIG.email`.
+- Certificates page groups (2026-11-27): 01 Accreditation & Registration (SCE, Sudanese Engineering Council) · 02 BIM Diploma + 9 courses + JELECOM (`OTHER.tech`) · 03 Management (`OTHER.mgmt`: Edraak, AREES) · 04 Additional (`OTHER.extra`: Zain). Never publish identity documents.

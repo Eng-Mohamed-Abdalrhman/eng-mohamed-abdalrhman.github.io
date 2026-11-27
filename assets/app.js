@@ -293,7 +293,7 @@ function certsPage(){
    <a class="clink" href="docs/certs/${c[0]}.pdf" target="_blank" rel="noopener">${t.pdf}</a></div></article>`;
  const other=o=>`<article class="ccard">${shot(o.id,o.t[a])}<div class="cbody">${num()}<h4>${o.t[a]}</h4>
    <p class="cmeta"><b>${t.by}:</b> <bdi>${o.by[a]}</bdi></p>
-   <p class="cmeta">${o.h?`<span class="ltrnum">${o.h}</span> ${t.hrs} · `:""}${dates(o.d)}</p>
+   <p class="cmeta">${o.h?(L=="ar"&&o.h==2?"ساعتان · ":`<span class="ltrnum">${o.h}</span> ${t.hrs} · `):""}${dates(o.d)}</p>
    <p class="cmeta">${o.topic[a]}</p>
    <a class="clink" href="docs/certs/${o.id}.pdf" target="_blank" rel="noopener">${t.pdf}</a></div></article>`;
  const total=2+1+COURSES.length+OTHER.tech.length+OTHER.mgmt.length+OTHER.extra.length;
