@@ -2,7 +2,8 @@
 /* ===== CONFIG (edit here) ===== */
 const CONFIG={
   name:{en:"MOHAMED ABDALRHMAN ELYAS AHMED",ar:"محمد عبدالرحمن الياس احمد"},
-  email:"eng.mohamed.elyas@gmail.com", phone:"+966 50 604 8872", phoneHref:"+966506048872",
+  email:"eng.mohamed.elyas@gmail.com", phone:"+966 50 604 8872", phoneHref:"+966506048872", whatsapp:"966506048872",
+  site:"https://eng-mohamed-abdalrhman.github.io",
   linkedin:"",            /* hidden until a verified URL is supplied */
   teamSize:null,          /* e.g. "130–150" — shown only after confirmation */
   draft:false,            /* true = review notes + empty document placeholders */
@@ -11,6 +12,20 @@ const CONFIG={
 /* Document samples (AutoCAD, BOQ, reports…) — add items here when supplied:
    {type:"autocad", img:"docs/plan-01.jpg", en:"Title", ar:"العنوان"} */
 const DOCS=[];
+/* Certificates — originals in docs/certs/*.pdf, previews in img/certs/<id>.jpg (+ -t.jpg thumbnail) */
+const SCE={id:"sce-professional-accreditation",no:"1014930",start:["03 February 2024","03 فبراير 2024"],until:["02 March 2027","02 مارس 2027"]};
+const BIM={id:"bim-diploma",hours:220,all:"docs/certs/bim-diploma-all-certificates.pdf",
+ parts:"BIM Execution Plan · BIM Standards and Codes · Revit · Families · Revit Advanced · Navisworks · 4D & 5D Simulation · Autodesk Construction Cloud · BIM 360 · Dynamo"};
+const COURSES=[ /* [id, title, hours, from, to] — exactly as printed on each certificate */
+ ["bim-execution-plan","BIM Execution Plan",12,"31/12/2025","11/01/2026"],
+ ["bim-standards-codes","BIM Standards and Codes",16,"18/01/2026","04/02/2026"],
+ ["revit","Revit",32,"08/02/2026","15/03/2026"],
+ ["families","Families",20,"29/03/2026","12/04/2026"],
+ ["revit-advanced","Revit Advanced",20,"19/04/2026","03/05/2026"],
+ ["autodesk-construction-cloud","Autodesk Construction Cloud",48,"13/05/2026","05/07/2026"],
+ ["dynamo","Dynamo",16,"08/07/2026","19/07/2026"],
+ ["navisworks","NavisWorks",32,"23/07/2026","17/08/2026"],
+ ["4d-5d-simulation","4D & 5D Simulation",12,"25/08/2026","01/09/2026"]];
 /* Projects — add only after confirmation. Owner, main contractor and employer are separate fields.
    {verified:true, name:{en:"",ar:""}, owner:{en:"",ar:""}, contractor:{en:"",ar:""}, employer:{en:"",ar:""},
     location:{en:"",ar:""}, type:{en:"",ar:""}, role:{en:"",ar:""}, scope:{en:[""],ar:[""]}, imgs:[17,24]} */
@@ -64,7 +79,7 @@ en:{dir:"ltr",lang:"العربية",cv:"Download CV",role:"Civil Engineer",
  pills:["Project engineering","Site execution","Project management","Technical office","Design & drafting","Quantity surveying","Engineering documentation","Workforce management"],
  contact:"Contact me",
  tags:["Villa interiors","Marble works","Technical office","Bathroom finishing","Flooring & joinery"],
- facts:[["7+ years","Engineering experience since 2018"],["SCE","Accredited Engineer — Civil Engineering"],["B.Sc. (Hons)","Civil Engineering — Highway & Transportation"],["6 organisations","Private contracting & public sector, KSA · Sudan"]],
+ facts:[["7+ years","Engineering experience since 2018"],["SCE","Accredited Engineer · valid to 02 Mar 2027"],["BIM Diploma","220 hours · Revit · Navisworks"],["B.Sc. (Hons)","Civil Engineering — Highway & Transportation"],["6 organisations","Private contracting & public sector, KSA · Sudan"]],
  profEy:"Professional profile",profH:"A civil engineer between the site, the technical office and the project team",
  prof:["I work as a Civil Engineer with a general contracting establishment in Saudi Arabia, supervising construction activities against approved drawings, specifications and safety standards, reviewing engineering plans, coordinating site teams and monitoring the quality and progress of works.",
  "As Engineering Administration Manager at Blanco Group I managed engineering and administrative operations — planning, coordination, oversight of daily activities and reporting — and worked with clients and stakeholders. In Sudan I supervised road and bridge works, infrastructure projects and the construction and maintenance of judicial buildings, using AutoCAD for technical documentation and reporting."],
@@ -84,7 +99,7 @@ en:{dir:"ltr",lang:"العربية",cv:"Download CV",role:"Civil Engineer",
  docEy:"Documentation & reports",docH:"Drawings, quantities and reports",docL:"Samples of technical-office work — AutoCAD drawings, engineering plans, BOQ samples and reports — will be published here.",
  docTypes:[["AutoCAD drawings","Plans, details and sections"],["Engineering plans","Layouts and coordination drawings"],["Technical drawings","Shop and as-built references"],["BOQ samples","Bills of quantities and take-offs"],["Engineering reports","Daily, weekly and highlight reports"],["Project documentation","Requests, submittals and records"]],
  docDraft:"Review note: document samples pending — this block shows only in the review draft.",
- expEy:"Professional experience",expH:"Experience",current:"Current",pages:[["index.html","home","Home"],["projects.html","projects","Projects"],["organizations.html","orgs","Organizations"],["jobs.html","jobs","My Jobs"]],
+ expEy:"Professional experience",expH:"Experience",current:"Current",pages:[["index.html","home","Home"],["projects.html","projects","Projects"],["organizations.html","orgs","Organizations"],["jobs.html","jobs","My Jobs"],["certifications.html","certs","Certifications"]],
  smpName:"Sample Project – Design Preview",smpBadge:"Design preview — not a real project",smpLoc:"Location — to be added",smpSum:"A short description of the project will appear here: its type, scale and purpose.",smpWork:"A summary of the engineering works I took part in will appear here.",
  prjLoc:"Location",prjWork:"My contribution",
  orgIntro:"Companies and institutions connected to the projects, work and professional experience of Eng. Mohamed Abdalrhman. Listing reflects association with projects — not ownership or employment.",assocP:"Associated Projects",assocNone:"To be added",logoHere:"Logo",
@@ -106,7 +121,13 @@ en:{dir:"ltr",lang:"العربية",cv:"Download CV",role:"Civil Engineer",
  conEy:"Contact",conH:"Let's discuss your next project",conL:"Open to civil, project, site and technical-office engineering roles in Saudi Arabia.",
  email:"Email",phone:"Phone / WhatsApp",cvrow:"Curriculum vitae",cvlink:"Download CV (PDF)",
  foot1:"Civil Engineer · Kingdom of Saudi Arabia",foot2:"Updated November 2026",
- prev:"←",next:"→",close:"Close"},
+ prev:"←",next:"→",close:"Close",
+ cEy:"Certifications & Professional Training",cH:"Certifications & Professional Training",cL:"Professional accreditation, a 220-hour BIM diploma and nine specialised technical courses. Each card opens the original certificate.",
+ cG:["Professional Accreditation","Professional Diploma","Specialized Technical Courses"],
+ sceT:"Saudi Council of Engineers — Professional Accreditation",sceK:[["Membership No.","no"],["Category","Engineer"],["Specialization","Civil Engineering"],["Accreditation start","start"],["Valid until","until"]],
+ bimT:"BIM Diploma — 220 Hours",bimK:[["Provider","Mkademy Engineering Training Courses"],["Software","Revit — Navisworks"],["Duration","220 hours"]],bimP:"Covers",
+ crs:"Course",hrs:"hours",from:"From",to:"to",pdf:"Open PDF",view:"View",allPdf:"All BIM certificates (PDF)",certsAll:"All certificates",
+ waL:"WhatsApp",callL:"Call",mailL:"Email",reachH:"Contact directly",waT:"Chat on WhatsApp",callT:"Call +966 50 604 8872",mailT:"Send an email"},
 ar:{dir:"rtl",lang:"English",cv:"تحميل السيرة الذاتية",role:"مهندس مدني",
  nav:[["home","الرئيسية"],["profile","الملف المهني"],["capabilities","المكتب الفني"],["leadership","القيادة"],["practice","الأعمال الهندسية"],["gallery","المعرض"],["documents","المستندات"],["experience","الخبرات"],["education","التعليم"],["contact","التواصل"]],
  kick:"البورتفوليو الهندسي · المملكة العربية السعودية",
@@ -115,7 +136,7 @@ ar:{dir:"rtl",lang:"English",cv:"تحميل السيرة الذاتية",role:"�
  pills:["هندسة المشاريع","التنفيذ الميداني","إدارة المشاريع","المكتب الفني","التصميم والرسم الهندسي","حصر الكميات","التوثيق الهندسي","إدارة القوى العاملة"],
  contact:"تواصل معي",
  tags:["التشطيبات الداخلية للفلل","أعمال الرخام","المكتب الفني","تشطيب الحمّامات","الأرضيات والأعمال الخشبية"],
- facts:[["+7 سنوات","خبرة هندسية منذ 2018"],["مهندس معتمد","الهيئة السعودية للمهندسين — هندسة مدنية"],["بكالوريوس","الهندسة المدنية (مرتبة الشرف) — الطرق والنقل"],["6 جهات عمل","القطاع الخاص والحكومي، السعودية والسودان"]],
+ facts:[["+7 سنوات","خبرة هندسية منذ 2018"],["مهندس معتمد","الهيئة السعودية للمهندسين · صالح حتى 02 مارس 2027"],["دبلوم BIM","220 ساعة · برنامجا Revit وNavisworks"],["بكالوريوس","الهندسة المدنية (مرتبة الشرف) — الطرق والنقل"],["6 جهات عمل","القطاع الخاص والحكومي، السعودية والسودان"]],
  profEy:"الملف المهني",profH:"مهندس مدني يجمع بين الموقع والمكتب الفني وفريق المشروع",
  prof:["أعمل مهندساً مدنياً في مؤسسة مقاولات عامة بالمملكة العربية السعودية، أشرف على أعمال الإنشاء وفق المخططات والمواصفات المعتمدة ومعايير السلامة، وأراجع المخططات الهندسية، وأنسّق فرق العمل في الموقع، وأتابع جودة الأعمال ونسب تقدمها.",
  "وبصفتي مدير الإدارة الهندسية في Blanco Group، أدرت العمليات الهندسية والإدارية من تخطيط وتنسيق ومتابعة للأنشطة اليومية وإعداد التقارير، وتواصلت مع العملاء والجهات المعنية. وفي السودان أشرفت على أعمال الطرق والجسور ومشاريع البنية التحتية وأعمال إنشاء وصيانة مباني السلطة القضائية، مستخدماً AutoCAD في التوثيق الفني وإعداد التقارير."],
@@ -135,7 +156,7 @@ ar:{dir:"rtl",lang:"English",cv:"تحميل السيرة الذاتية",role:"�
  docEy:"المستندات والتقارير",docH:"المخططات والكميات والتقارير",docL:"ستُنشر هنا نماذج من أعمال المكتب الفني: مخططات AutoCAD والمخططات الهندسية ونماذج جداول الكميات والتقارير.",
  docTypes:[["مخططات AutoCAD","مساقط وتفاصيل وقطاعات"],["المخططات الهندسية","مخططات التوزيع والتنسيق"],["الرسومات الفنية","مخططات تنفيذية ومخططات As-Built"],["نماذج جداول الكميات","جداول الكميات (BOQ) والحصر"],["التقارير الهندسية","تقارير يومية وأسبوعية وتقارير موجزة"],["توثيق المشاريع","الطلبات والاعتمادات والسجلات"]],
  docDraft:"ملاحظة مراجعة: نماذج المستندات قيد التجهيز — يظهر هذا الجزء في مسودة المراجعة فقط.",
- expEy:"الخبرات المهنية",expH:"الخبرات",current:"حالياً",pages:[["index.html","home","الرئيسية"],["projects.html","projects","المشاريع"],["organizations.html","orgs","الجهات والشركات"],["jobs.html","jobs","جهات العمل"]],
+ expEy:"الخبرات المهنية",expH:"الخبرات",current:"حالياً",pages:[["index.html","home","الرئيسية"],["projects.html","projects","المشاريع"],["organizations.html","orgs","الجهات والشركات"],["jobs.html","jobs","جهات العمل"],["certifications.html","certs","الشهادات"]],
  smpName:"مشروع تجريبي – معاينة التصميم",smpBadge:"معاينة تصميم — ليس مشروعاً حقيقياً",smpLoc:"الموقع — يُضاف لاحقاً",smpSum:"سيظهر هنا وصف مختصر للمشروع: نوعه وحجمه والغرض منه.",smpWork:"سيظهر هنا ملخص الأعمال الهندسية التي شاركت فيها.",
  prjLoc:"الموقع",prjWork:"مشاركتي",
  orgIntro:"شركات ومؤسسات ارتبطت بالمشاريع والأعمال والخبرات المهنية للمهندس محمد عبدالرحمن. الإدراج يعني الارتباط بالمشاريع، ولا يعني الملكية أو التوظيف.",assocP:"المشاريع المرتبطة بها",assocNone:"تُضاف لاحقاً",logoHere:"الشعار",
@@ -157,7 +178,13 @@ ar:{dir:"rtl",lang:"English",cv:"تحميل السيرة الذاتية",role:"�
  conEy:"التواصل",conH:"لنتحدث عن مشروعك القادم",conL:"متاح لوظائف الهندسة المدنية وهندسة المشاريع والمواقع والمكتب الفني في المملكة العربية السعودية.",
  email:"البريد الإلكتروني",phone:"الهاتف / واتساب",cvrow:"السيرة الذاتية",cvlink:"تحميل السيرة الذاتية (PDF)",
  foot1:"مهندس مدني · المملكة العربية السعودية",foot2:"آخر تحديث: نوفمبر 2026",
- prev:"→",next:"←",close:"إغلاق"}};
+ prev:"→",next:"←",close:"إغلاق",
+ cEy:"الشهادات والدورات التدريبية",cH:"الشهادات والدورات التدريبية",cL:"الاعتماد المهني، ودبلوم BIM بمدة 220 ساعة، وتسع دورات تقنية متخصصة. كل بطاقة تفتح الشهادة الأصلية.",
+ cG:["الاعتماد المهني","الدبلوم المهني","الدورات التقنية المتخصصة"],
+ sceT:"الاعتماد المهني — الهيئة السعودية للمهندسين",sceK:[["رقم العضوية","no"],["الفئة","مهندس"],["التخصص","هندسة مدنية"],["تاريخ بداية الاعتماد","start"],["صالح حتى","until"]],
+ bimT:"دبلوم نمذجة معلومات البناء (BIM) — 220 ساعة",bimK:[["الجهة","Mkademy Engineering Training Courses"],["البرامج","Revit — Navisworks"],["المدة","220 ساعة"]],bimP:"المحاور",
+ crs:"دورة",hrs:"ساعة",from:"من",to:"إلى",pdf:"فتح ملف PDF",view:"عرض",allPdf:"جميع شهادات BIM (PDF)",certsAll:"جميع الشهادات",
+ waL:"واتساب",callL:"اتصال",mailL:"بريد",reachH:"تواصل مباشر",waT:"محادثة عبر واتساب",callT:"اتصال على ‎+966 50 604 8872",mailT:"إرسال بريد إلكتروني"}};
 
 /* d = documented (CV or photographs), r = related working knowledge */
 const CAPS=[
@@ -211,9 +238,10 @@ const EXP=[
  {when:["Oct 2017 – Dec 2017","أكتوبر 2017 – ديسمبر 2017"],loc:["Sudan","السودان"],t:["Trainee Civil Engineer","مهندس مدني متدرب"],org:"Al Tawfiq Engineering Company",orgAr:"Al Tawfiq Engineering Company",
   b:[["Assisted in basic site supervision and reviewed simple technical drawings.","المساعدة في الإشراف الميداني ومراجعة الرسومات الفنية البسيطة."]]}];
 const EDU=[
- {ok:1,en:["Professional Accreditation — Engineer","Saudi Council of Engineers · Civil Engineering"],ar:["الاعتماد المهني — مهندس","الهيئة السعودية للمهندسين · الهندسة المدنية"]},
+ {ok:1,en:["Professional Accreditation — Engineer","Saudi Council of Engineers · Civil Engineering · Membership No. 1014930 · valid until 02 March 2027"],ar:["الاعتماد المهني — مهندس","الهيئة السعودية للمهندسين · هندسة مدنية · رقم العضوية 1014930 · صالح حتى 02 مارس 2027"]},
+ {ok:1,en:["BIM Diploma — 220 Hours","Mkademy · Revit — Navisworks · nine specialised courses, Dec 2025 – Sep 2026"],ar:["دبلوم نمذجة معلومات البناء (BIM) — 220 ساعة","Mkademy · Revit — Navisworks · تسع دورات متخصصة، ديسمبر 2025 – سبتمبر 2026"]},
  {en:["B.Sc. (Honours) Civil Engineering","Highway & Transportation · Sudan University of Science and Technology · 2013 – 2018"],ar:["بكالوريوس الهندسة المدنية (مرتبة الشرف)","تخصص الطرق والنقل · جامعة السودان للعلوم والتكنولوجيا · 2013 – 2018"]},
- {en:["Professional training",""],ar:["التدريب المهني",""],list:[["Revit, BIM Standards & Families — Mkademy, 2025","Revit ومعايير BIM والعائلات — Mkademy، 2025"],["AutoCAD, SAP2000, ETABS, CSI Column, PlanSwift — JELECOM, 2015","AutoCAD وSAP2000 وETABS وCSI Column وPlanSwift — JELECOM، 2015"],["Impactful Leadership & Effective Management — Edraak, 2020","القيادة المؤثرة والإدارة الفعّالة — إدراك، 2020"],["Personal Strategic Planning — AREES International University, 2020","التخطيط الاستراتيجي الشخصي — جامعة أريس الدولية، 2020"]]}];
+ {en:["Professional training",""],ar:["التدريب المهني",""],list:[["AutoCAD, SAP2000, ETABS, CSI Column, PlanSwift — JELECOM, 2015","AutoCAD وSAP2000 وETABS وCSI Column وPlanSwift — JELECOM، 2015"],["Impactful Leadership & Effective Management — Edraak, 2020","القيادة المؤثرة والإدارة الفعّالة — إدراك، 2020"],["Personal Strategic Planning — AREES International University, 2020","التخطيط الاستراتيجي الشخصي — جامعة أريس الدولية، 2020"]]}];
 
 /* ===== render ===== */
 const pad=n=>String(n).padStart(2,"0");
@@ -221,9 +249,38 @@ const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",
 let L="en";try{const s=localStorage.getItem("lang");if(s==="ar"||s==="en")L=s}catch(e){}
 let filter="all",view=[],current="home";
 const mk=t=>`<span class="mk ${t}" aria-hidden="true"></span>`;
-const ico={mail:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>',phone:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>',file:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>'};
+const ico={mail:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>',phone:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>',wa:'<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.8 9.8 0 0 0-8.4 14.8L2.3 21.8l4.9-1.3A9.8 9.8 0 1 0 12 2.2zm0 1.8a8 8 0 1 1-4.2 14.8l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 0 1 12 4zm-3.2 3.9c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5 0 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3l-1.9-.9c-.3-.1-.5-.1-.6.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.4.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5l-.9-2c-.2-.5-.4-.5-.6-.5h-.5z"/></svg>',call:'<svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>',env:'<svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>',file:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>'};
 const dwg=`<svg viewBox="0 0 300 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><pattern id="g" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="rgba(255,255,255,.08)"/></pattern></defs><rect width="300" height="300" fill="url(#g)"/><g fill="none" stroke="#d6b27a" stroke-width="2"><rect x="60" y="70" width="180" height="140"/><path d="M60 140h80v70M140 70v40h100"/></g><g stroke="rgba(255,255,255,.55)" stroke-width="1"><path d="M60 230h180M60 224v12M240 224v12M260 70v140M254 70h12M254 210h12"/></g><g fill="rgba(255,255,255,.7)" font-family="IBM Plex Sans" font-size="11"><text x="140" y="246" text-anchor="middle">12.00</text><text x="276" y="144" transform="rotate(90 276 144)" text-anchor="middle">9.50</text></g><circle cx="190" cy="160" r="16" fill="none" stroke="rgba(255,255,255,.4)"/></svg>`;
 
+function reach(cls){
+ const t=T[L];
+ return `<div class="reach ${cls||""}" role="group" aria-label="${t.reachH}">
+  <a class="ri wa" href="https://wa.me/${CONFIG.whatsapp}" target="_blank" rel="noopener" aria-label="${t.waT}" title="${t.waT}">${ico.wa}<span>${t.waL}</span></a>
+  <a class="ri" href="tel:${CONFIG.phoneHref}" aria-label="${t.callT}" title="${t.callT}">${ico.call}<span>${t.callL}</span></a>
+  <a class="ri" href="mailto:${CONFIG.email}" aria-label="${t.mailT}: ${CONFIG.email}" title="${CONFIG.email}">${ico.env}<span>${t.mailL}</span></a></div>`;
+}
+function certsPage(){
+ const t=T[L],a=L=="ar"?1:0;
+ const kv=(k,v)=>`<div><dt>${k}</dt><dd>${v}</dd></div>`;
+ const shot=(id,alt,big)=>`<button class="cshot${big?" big":""}" data-cert="${id}" aria-label="${esc(t.view+" — "+alt)}"><img src="img/certs/${id}-t.jpg" alt="${esc(alt)}" loading="lazy" width="640" height="452"></button>`;
+ const sceV={no:`<span class="ltrnum">${SCE.no}</span>`,start:SCE.start[a],until:SCE.until[a]};
+ return `<section class="band" id="certs"><div class="wrap">
+  <div class="eyebrow">${t.cEy}<span class="ltrnum">${COURSES.length+2}</span></div><h2>${t.cH}</h2><p class="lede">${t.cL}</p>
+  <h3 class="cgrp"><small>01</small>${t.cG[0]}</h3>
+  <article class="ccard feat">${shot(SCE.id,t.sceT,1)}<div class="cbody"><h4>${t.sceT}</h4>
+   <dl>${t.sceK.map(([k,v])=>kv(k,sceV[v]||v)).join("")}</dl>
+   <div class="cact"><a class="btn p" href="docs/certs/${SCE.id}.pdf" target="_blank" rel="noopener">${ico.file}${t.pdf}</a></div></div></article>
+  <h3 class="cgrp"><small>02</small>${t.cG[1]}</h3>
+  <article class="ccard feat">${shot(BIM.id,t.bimT,1)}<div class="cbody"><h4>${t.bimT}</h4>
+   <dl>${t.bimK.map(([k,v])=>kv(k,v)).join("")}</dl>
+   <p class="cparts"><b>${t.bimP}:</b> <bdi>${BIM.parts}</bdi></p>
+   <div class="cact"><a class="btn p" href="docs/certs/${BIM.id}.pdf" target="_blank" rel="noopener">${ico.file}${t.pdf}</a><a class="btn s" href="${BIM.all}" target="_blank" rel="noopener">${t.allPdf}</a></div></div></article>
+  <h3 class="cgrp"><small>03</small>${t.cG[2]}</h3>
+  <div class="cgrid">${COURSES.map((c,i)=>`<article class="ccard">${shot(c[0],c[1])}<div class="cbody"><span class="cn ltrnum">${pad(i+1)}</span><h4><bdi>${c[1]}</bdi></h4>
+   <p class="cmeta"><span class="ltrnum">${c[2]}</span> ${t.hrs} · ${t.from} <span class="ltrnum">${c[3]}</span> ${t.to} <span class="ltrnum">${c[4]}</span></p>
+   <a class="clink" href="docs/certs/${c[0]}.pdf" target="_blank" rel="noopener">${t.pdf}</a></div></article>`).join("")}</div>
+ </div></section>`;
+}
 function page(){
  const t=T[L],a=L=="ar"?1:0,nm=CONFIG.name[L];
  const caps=CAPS.map(c=>`<article class="cap${c.wide?" wide":""}"><span class="ltr">${c.l}</span><h3>${(a?c.ar:c.en)[0]}</h3><p>${(a?c.ar:c.en)[1]}</p><ul>${c.i.map(x=>`<li><span class="dot" aria-hidden="true"></span><span>${a?x[1]:x[0]}</span></li>`).join("")}</ul></article>`).join("");
@@ -240,6 +297,7 @@ function page(){
   <p>${t.intro}</p>
   <ul class="pills">${t.pills.map(p=>`<li>${p}</li>`).join("")}</ul>
   <div class="btns"><a class="btn p" href="#contact">${t.contact}</a><a class="btn s" href="${L=="ar"?"cv-ar.pdf":"cv.pdf"}">${t.cv}</a></div>
+  ${reach("hero-r")}
  </div>
  <div class="plate">
   <figure class="p1">${CONFIG.photo?`<img src="${CONFIG.photo}" alt="${esc(nm)}" fetchpriority="high" style="object-position:50% 20%">`:""}<img ${CONFIG.photo?"hidden ":""}src="img/full/91.jpg" alt="${esc(t.tags[0])}" fetchpriority="high"><span class="tag">${t.tags[0]}</span></figure>
@@ -302,10 +360,11 @@ ${DOCS.length||CONFIG.draft?`<section class="band" id="documents"><div class="wr
  <div class="eyebrow">${t.eduEy}<span>08</span></div>
  <h2>${t.eduH}</h2>
  <div class="cred">${EDU.map(e=>{const x=a?e.ar:e.en;return`<div class="card"><h3>${x[0]}</h3>${x[1]?`<p>${x[1]}</p>`:""}${e.list?`<ul>${e.list.map(l=>`<li>${l[a]}</li>`).join("")}</ul>`:""}${e.ok?`<span class="ok">${t.verified}</span>`:""}</div>`}).join("")}</div>
+ <p style="margin-top:22px"><a class="btn s" href="certifications.html">${t.certsAll} →</a></p>
 </div></section>
 
 <section class="band dark" id="contact"><div class="wrap contact">
- <div><div class="eyebrow">${t.conEy}<span>09</span></div><h2>${t.conH}</h2><p class="lede">${t.conL}</p></div>
+ <div><div class="eyebrow">${t.conEy}<span>09</span></div><h2>${t.conH}</h2><p class="lede">${t.conL}</p>${reach("dark-r")}</div>
  <div class="rows">
   <a class="row" href="mailto:${CONFIG.email}"><span class="ic">${ico.mail}</span><span><small>${t.email}</small><b>${CONFIG.email}</b></span></a>
   <a class="row" href="tel:${CONFIG.phoneHref}"><span class="ic">${ico.phone}</span><span><small>${t.phone}</small><b>${CONFIG.phone}</b></span></a>
@@ -374,17 +433,19 @@ let io;
 function render(keep){
  const t=T[L];
  document.documentElement.lang=L;document.documentElement.dir=t.dir;
- const sub={projects:[t.prjEy],orgs:[t.pages[2][2]],jobs:[t.pages[3][2]]}[PAGE];document.title=(sub?sub[0]+" — ":"")+(L=="ar"?CONFIG.name.ar+" — مهندس مدني":"Mohamed Abdalrhman Elyas Ahmed — Civil Engineer");
+ const sub={projects:[t.prjEy],orgs:[t.pages[2][2]],jobs:[t.pages[3][2]],certs:[t.pages[4][2]]}[PAGE];document.title=(sub?sub[0]+" — ":"")+(L=="ar"?CONFIG.name.ar+" — مهندس مدني":"Mohamed Abdalrhman Elyas Ahmed — Civil Engineer");
  document.getElementById("hdrName").textContent=CONFIG.name[L];
  document.getElementById("hdrRole").textContent=t.role;
  document.getElementById("hdrCv").textContent=t.cv;document.getElementById("hdrCv").href=L=="ar"?"cv-ar.pdf":"cv.pdf";
  const lb=document.getElementById("lang");lb.textContent=t.lang;lb.lang=L=="ar"?"en":"ar";lb.setAttribute("aria-label",L=="ar"?"Switch to English":"التبديل إلى العربية");
  document.getElementById("secnav").innerHTML=(PAGE=="home"?t.nav:[]).filter(n=>n[0]!="home"&&(n[0]!="documents"||DOCS.length||CONFIG.draft)).map(([id,l])=>`<a href="#${id}" data-id="${id}">${l}</a>`).join("");
- document.getElementById("app").innerHTML=PAGE=="projects"?projectsPage():PAGE=="orgs"?orgsPage():PAGE=="jobs"?jobsPage():page();
+ document.getElementById("app").innerHTML=PAGE=="projects"?projectsPage():PAGE=="orgs"?orgsPage():PAGE=="jobs"?jobsPage():PAGE=="certs"?certsPage():page();
  document.getElementById("pagenav").innerHTML=t.pages.map(([h,k,l])=>`<a href="${h}"${k==PAGE?' aria-current="page" class="on"':""}>${l}</a>`).join("");
  document.getElementById("secnav").hidden=PAGE!="home";
+ {const on=document.querySelector("#pagenav a.on");const nv=document.getElementById("pagenav");if(on&&nv.scrollWidth>nv.clientWidth)nv.scrollLeft+=on.getBoundingClientRect().left-nv.getBoundingClientRect().left-(nv.clientWidth-on.offsetWidth)/2;}
  document.getElementById("foot1").textContent=CONFIG.name[L]+" · "+t.foot1;
  document.getElementById("foot2").textContent=t.foot2;
+ const fr=document.getElementById("footReach");if(fr)fr.innerHTML=reach("foot-r");
  ["prev","next","close"].forEach(k=>document.getElementById(k).textContent=t[k]);
  if(PAGE=="home")renderGallery();
  if(io)io.disconnect();
@@ -399,7 +460,9 @@ document.getElementById("lang").addEventListener("click",()=>{
 document.addEventListener("click",e=>{
  const f=e.target.closest("[data-f]");if(f){filter=f.dataset.f;renderGallery();return}
  const g=e.target.closest("[data-go]");if(g){filter=g.dataset.go;renderGallery();document.getElementById("gallery").scrollIntoView();return}
- const o=e.target.closest("[data-open]");if(o){
+ const ce=e.target.closest("[data-cert]");if(ce){
+  certList=[...document.querySelectorAll("[data-cert]")].map(x=>[x.dataset.cert,x.getAttribute("aria-label")]);certPos=certList.findIndex(x=>x[0]==ce.dataset.cert);mode="cert";show();try{dlg.showModal()}catch(err){dlg.setAttribute("open","")}return}
+ const o=e.target.closest("[data-open]");if(o){mode="photo";
   const id=+o.dataset.open;
   list=o.dataset.set?[...document.querySelectorAll(`[data-set="${o.dataset.set}"]`)].map(x=>+x.dataset.open):view.map(p=>p[0]);
   pos=list.indexOf(id);show();try{dlg.showModal()}catch(err){dlg.setAttribute("open","")}
@@ -407,8 +470,9 @@ document.addEventListener("click",e=>{
 });
 const dlg=document.getElementById("lb"),li=document.getElementById("lbimg"),lc=document.getElementById("lbcap");
 let list=[],pos=0;
-function show(){const a=L=="ar"?1:0,id=list[pos],p=P.find(x=>x[0]==id);li.src=`img/full/${pad(id)}.jpg`;li.alt=p?p[2+a]:"";lc.textContent=`${p?p[2+a]:""} — ${pos+1} / ${list.length}`}
-const step=d=>{pos=(pos+d+list.length)%list.length;show()};
+let mode="photo",certList=[],certPos=0;
+function show(){if(mode=="cert"){const c=certList[certPos];li.src=`img/certs/${c[0]}.jpg`;li.alt=c[1];lc.textContent=`${c[1].replace(/^[^—]*— /,"")} — ${certPos+1} / ${certList.length}`;return}const a=L=="ar"?1:0,id=list[pos],p=P.find(x=>x[0]==id);li.src=`img/full/${pad(id)}.jpg`;li.alt=p?p[2+a]:"";lc.textContent=`${p?p[2+a]:""} — ${pos+1} / ${list.length}`}
+const step=d=>{if(mode=="cert")certPos=(certPos+d+certList.length)%certList.length;else pos=(pos+d+list.length)%list.length;show()};
 document.getElementById("prev").onclick=()=>step(-1);
 document.getElementById("next").onclick=()=>step(1);
 document.getElementById("close").onclick=()=>dlg.close();

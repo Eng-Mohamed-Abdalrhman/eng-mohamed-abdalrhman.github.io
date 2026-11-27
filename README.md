@@ -16,3 +16,9 @@ Bilingual (English / Arabic) personal engineering portfolio, published with GitH
 - After changing `assets/app.js` or `assets/site.css`, bump the `?v=` number in the three HTML files so visitors get the new version immediately.
 
 - Photos 58–93 added 2026-11-23 (villa interiors); none are linked to a specific project until confirmed — add `imgs:[..]` to a project in `PROJECTS` to show them on its card.
+
+## Certificates (certifications.html)
+- Original PDFs: `docs/certs/*.pdf` (one file per certificate, plus `bim-diploma-all-certificates.pdf` = the full original upload).
+- Previews: `img/certs/<id>.jpg` (large, lightbox) and `img/certs/<id>-t.jpg` (card thumbnail), rendered from the PDFs without cropping.
+- Data: `SCE`, `BIM` and `COURSES` at the top of `assets/app.js`. To add a certificate: put the PDF in `docs/certs/`, render the two JPGs, add a row to `COURSES`.
+- Contact icons (WhatsApp / call / email) come from `reach()` in `assets/app.js` and use `CONFIG.whatsapp`, `CONFIG.phoneHref`, `CONFIG.email`.
